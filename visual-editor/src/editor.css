@@ -1,0 +1,17 @@
+*{box-sizing:border-box}
+html,body,#root{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.amp-editor-shell{height:100vh;display:flex;flex-direction:column;--puck-color-interactive:#2861dc;--puck-color-interactive-hover:#1b48ad;--puck-color-interactive-subtle:#dce8ff;--puck-radius-m:9px}
+.amp-editor-banner{min-height:79px;background:#101e39;color:white;display:flex;align-items:center;gap:22px;padding:12px 25px}
+.amp-editor-brand{display:flex;align-items:center;gap:12px;min-width:220px}
+.amp-editor-brand strong{display:block;font-size:14px;letter-spacing:.01em}
+.amp-editor-brand small{display:block;font-size:11px;color:#b7c5df;margin-top:4px}
+.amp-editor-mark{height:40px;width:40px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(130deg,#6a98ff,#3870dd);font-size:18px;font-weight:800}
+.amp-editor-info{flex:1;font-size:12px;line-height:1.4;color:#d6e5ff;max-width:500px}
+.amp-editor-buttons{display:flex;gap:7px;flex-wrap:wrap}
+.amp-editor-buttons button,.amp-editor-buttons a{border:1px solid #40597f;color:#ecf3ff;background:#203154;border-radius:9px;padding:9px 12px;font-size:12px;cursor:pointer;text-decoration:none;white-space:nowrap}
+.amp-editor-buttons button:hover,.amp-editor-buttons a:hover{background:#2c4670}
+.amp-editor-note{background:#eff5ff;color:#2a4977;display:flex;align-items:center;gap:8px;font-size:12px;min-height:37px;padding:7px 22px}
+.amp-editor-dot{width:7px;height:7px;border-radius:100%;background:#4d80e5}
+.amp-editor-shell > [class*="Puck"]{flex:1;min-height:0}
+.amp-editor-shell > div:last-child{flex:1;min-height:0}
+@media(max-width:880px){.amp-editor-banner{flex-wrap:wrap;gap:10px;padding:10px 14px}.amp-editor-info{order:3;flex-basis:100%}.amp-editor-buttons{margin-left:auto}}

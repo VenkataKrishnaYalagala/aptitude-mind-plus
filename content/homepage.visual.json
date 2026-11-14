@@ -1,0 +1,63 @@
+{
+  "root": {
+    "props": {
+      "title": "Aptitude Mind Plus | Free Aptitude Learning",
+      "fontStyle": "system"
+    }
+  },
+  "content": [
+    {
+      "type": "Hero",
+      "props": {
+        "id": "amp-hero-1",
+        "eyebrow": "ALL IN ONE FOR APTITUDE & QWUANT",
+        "title": "Understand aptitude. Prepare with confidence.",
+        "description": "Learn concepts, watch free lessons, practise original questions, and explore verified previous papers. Pay only when you want personal support.",
+        "primaryText": "Explore free courses",
+        "primaryHref": "courses.html",
+        "secondaryText": "Watch video lessons",
+        "secondaryHref": "lessons.html",
+        "theme": "blue"
+      }
+    },
+    {
+      "type": "ExamPaths",
+      "props": {
+        "id": "amp-exams-1",
+        "eyebrow": "YOUR EXAM, YOUR PATHWAY",
+        "heading": "Which exam are you preparing for?",
+        "description": "One foundation, with different routes for UPSC CSAT, GATE, SSC, Banking, state examinations and Railways."
+      }
+    },
+    {
+      "type": "CourseShelf",
+      "props": {
+        "id": "amp-courses-1",
+        "eyebrow": "OPEN CLASSROOM",
+        "heading": "Explore exam-focused learning.",
+        "description": "Free course guides and concepts. Learn independently at your own pace.",
+        "count": "3"
+      }
+    },
+    {
+      "type": "TextSection",
+      "props": {
+        "id": "amp-story-1",
+        "eyebrow": "HOW LEARNING WORKS",
+        "heading": "Learn freely. Practise deliberately.",
+        "body": "Start with a clear concept, watch the lesson on YouTube directly from this website, then solve original practice problems and review your reasoning.",
+        "align": "center"
+      }
+    },
+    {
+      "type": "TutorCTA",
+      "props": {
+        "id": "amp-support-1",
+        "eyebrow": "NEED PERSONAL HELP?",
+        "heading": "A real teacher when you need one.",
+        "description": "Our lessons and practice remain free. Students who want individual guidance can apply for a tutoring support programme; scope and schedule are agreed before payment.",
+        "buttonText": "Ask about tutoring"
+      }
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+.ampv-page{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#15243e;background:#fff;line-height:1.6}
+.ampv-font-modern{font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif}
+.ampv-font-readable{font-family:Verdana,"Segoe UI",sans-serif}
+.ampv-font-editorial{font-family:Georgia,"Times New Roman",serif}
+.ampv-page *{box-sizing:border-box}
+.ampv-page h1,.ampv-page h2,.ampv-page h3{letter-spacing:-.04em;line-height:1.12}
+.ampv-page a{text-decoration:none}
+.ampv-wrap{width:min(1160px,calc(100% - 48px));margin:0 auto}
+.ampv-hero{padding:92px 0 95px;background:linear-gradient(135deg,#f7fbff 0,#e6efff 72%,#f6f5ff)}
+.ampv-theme-white{background:#fff}.ampv-theme-navy{background:linear-gradient(135deg,#0c2047,#25458f);color:#fff}
+.ampv-theme-navy p,.ampv-theme-navy .ampv-hero-caption{color:#dfebff}
+.ampv-hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.9fr);gap:55px;align-items:center}
+.ampv-eyebrow{font-size:11px;letter-spacing:.19em;font-weight:850;color:#416fce;display:block;margin-bottom:17px}
+.ampv-theme-navy .ampv-eyebrow{color:#a5c6ff}
+.ampv-hero h1{font-size:clamp(42px,5vw,69px);margin:0 0 20px;font-weight:800;max-width:710px}
+.ampv-hero p{color:#53627d;font-size:17px;max-width:580px;line-height:1.7;margin:0 0 28px}
+.ampv-actions{display:flex;gap:11px;flex-wrap:wrap}
+.ampv-btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:13px 21px;border-radius:999px;font-size:13px;font-weight:750}
+.ampv-btn-primary{background:#2e60dd;color:#fff!important;box-shadow:0 9px 22px #244daa28}
+.ampv-btn-secondary{background:#fff;color:#254c99!important;border:1px solid #dae4f5}
+.ampv-hero-caption{margin-top:30px;font-size:12px;color:#70809a}
+.ampv-art-card{min-height:310px;border-radius:26px;position:relative;overflow:hidden;padding:26px;background:linear-gradient(145deg,#133d93,#658ceb);color:#fff;box-shadow:0 22px 65px #1d438b2b}
+.ampv-art-label{font-size:10px;letter-spacing:.2em;color:#ccddff;font-weight:800}
+.ampv-math{font-size:clamp(44px,5vw,66px);font-weight:850;letter-spacing:-.06em;margin-top:60px;position:relative;z-index:2}
+.ampv-math sup{font-size:29px;vertical-align:top}.ampv-math span{color:#b6f5e7;margin-left:13px;font-size:35px}
+.ampv-orbit{border:1px solid #ffffff50;width:340px;height:340px;border-radius:50%;position:absolute;right:-120px;top:-90px}
+.ampv-art-footer{margin-top:32px;color:#d5e3ff;font-size:12px;letter-spacing:.08em}
+.ampv-section{padding:86px 0}.ampv-soft{background:#f7faff}
+.ampv-heading{margin-bottom:32px;max-width:780px}.ampv-center{text-align:center;margin-inline:auto}
+.ampv-heading h2{font-size:clamp(31px,4vw,46px);margin:0 0 13px;font-weight:790}
+.ampv-heading p{color:#67738a;max-width:800px;margin:0;font-size:15px}
+.ampv-exam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ampv-exam-card{position:relative;display:block;padding:24px;border:1px solid #e3e8f2;border-left:4px solid var(--accent);border-radius:17px;background:#fff;color:#1e2c43;min-height:145px}
+.ampv-exam-card h3{margin:21px 0 8px;font-size:20px}.ampv-exam-card small{color:#768198;line-height:1.5}.ampv-chip{font-weight:800;letter-spacing:.12em;color:#8898ac;font-size:9px}.ampv-card-arr{position:absolute;right:18px;top:16px;color:#527bd0}
+.ampv-course-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.ampv-course{display:flex;flex-direction:column;border:1px solid #e4eafa;border-radius:20px;overflow:hidden;background:#fff;color:#1c2d4a;min-height:360px}
+.ampv-course-art{min-height:160px;background:linear-gradient(135deg,var(--accent),#183666);padding:20px 24px;color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.ampv-course-art>span{font-size:9px;letter-spacing:.14em;color:#dfecff}.ampv-course-art strong{font-size:31px;line-height:1.05}
+.ampv-course-body{padding:22px;display:flex;flex-direction:column;flex:1}
+.ampv-course-body>small{color:#446cd4;font-size:10px;letter-spacing:.09em;font-weight:800}
+.ampv-course-body h3{font-size:18px;margin:10px 0 12px}.ampv-course-body p{color:#738096;font-size:13px;flex:1;margin:0 0 14px}
+.ampv-course-foot{border-top:1px solid #e8eefa;padding-top:13px;color:#8b97a8;font-size:10px;font-weight:700;display:flex;justify-content:space-between}
+.ampv-course-foot b{color:#178875;font-size:13px}
+.ampv-media-row{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.ampv-media-row .ampv-heading{margin:0}.ampv-media-row img,.ampv-placeholder{height:330px;width:100%;object-fit:contain;border-radius:23px;background:#e8effb}
+.ampv-placeholder{display:grid;place-items:center;padding:30px;text-align:center;font-size:14px;color:#8390a4}
+.ampv-cta{background:linear-gradient(115deg,#e8f0ff,#f2f6ff);border:1px solid #dde8fc;border-radius:24px;padding:53px;display:flex;gap:30px;align-items:center;justify-content:space-between}
+.ampv-cta .ampv-heading{margin:0}
+.ampv-spacer-small{height:16px}.ampv-spacer-medium{height:48px}.ampv-spacer-large{height:90px}
+@media(max-width:880px){.ampv-hero-grid,.ampv-media-row{grid-template-columns:1fr;gap:26px}.ampv-hero{padding:55px 0}.ampv-art-card{min-height:250px}.ampv-course-grid,.ampv-exam-grid{grid-template-columns:repeat(2,1fr)}.ampv-cta{padding:34px}}
+@media(max-width:540px){.ampv-wrap{width:min(100% - 32px,1160px)}.ampv-exam-grid,.ampv-course-grid{grid-template-columns:1fr}.ampv-section{padding:60px 0}.ampv-hero h1{font-size:40px}.ampv-cta{flex-direction:column;align-items:flex-start}.ampv-art-card{min-height:230px}}

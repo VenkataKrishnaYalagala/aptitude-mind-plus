@@ -53,7 +53,7 @@ def shell(page,title,description,body):
 <meta property="og:title" content="{escape(title,quote=True)}"><meta property="og:description" content="{escape(description,quote=True)}">
 <meta property="og:type" content="website"><meta name="color-scheme" content="light">
 <title>{escape(title)} | Aptitude Mind Plus</title>
-<link rel="icon" href="{logo}"><link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="{logo}"><link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/visual-home.css">
 <script src="assets/config.js" defer></script><script src="assets/app.js" defer></script><script src="assets/catalog.js" defer></script><script src="assets/videos.js" defer></script>
 </head><body data-page="{page}" data-font="{font_choice}">
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -126,7 +126,8 @@ def missing():
     return shell('404.html','Page not found','The requested page is not available.',f'''<section class="page-intro"><div class="wrap narrow center"><div class="eyebrow">404 / NOT FOUND</div><h1>Not every path leads <span class="gradient-text">somewhere.</span></h1><p>This page doesn't exist or may have moved. Let's get you back to learning.</p>{btn('Return home','index.html')}</div></section>''')
 
 from course_platform import home as platform_home, courses as platform_courses, detail_pages
-allpages={'index.html':platform_home(shell),'concepts.html':concepts(),'courses.html':platform_courses(shell),'lessons.html':lessons_page(shell),'practice.html':practice(),'pyqs.html':pyqs(),'submit.html':submit(),'tutoring.html':tutoring(),'admin.html':admin(),'privacy.html':privacy(),'404.html':missing()}
+from visual_home import render_home as visual_home
+allpages={'index.html':visual_home(shell),'concepts.html':concepts(),'courses.html':platform_courses(shell),'lessons.html':lessons_page(shell),'practice.html':practice(),'pyqs.html':pyqs(),'submit.html':submit(),'tutoring.html':tutoring(),'admin.html':admin(),'privacy.html':privacy(),'404.html':missing()}
 allpages.update(detail_pages(shell))
 for name,content in allpages.items():
     (ROOT/name).write_text(content,encoding='utf-8')

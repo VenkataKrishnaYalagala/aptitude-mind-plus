@@ -93,3 +93,7 @@ The site's small public course images are saved with GitHub through Pages CMS. S
 ## Admin and launch checks before taking real applications
 
 Set up and test D1, R2, bindings `DB` / `UPLOADS`, and secrets `ADMIN_PASSWORD` / `SESSION_SECRET`; the public front end can be visited before this, but submissions stay disabled. Add Cloudflare Turnstile anti-bot protection, contact details, a privacy and deletion policy, and verified copyright permissions. Obtain the owner-supplied official logo before branding signoff. Provide captioned videos and descriptive lesson notes for accessibility and search visibility. YouTube videos can be edited and re-uploaded via the YouTube owner account, not the website CMS itself.
+
+## Experimental visual homepage editor (development branch only)
+
+See [EDITOR_PILOT.md](EDITOR_PILOT.md) and [visual-editor/README.md](visual-editor/README.md). The new Puck editor is not enabled on the public site. It remains behind a feature branch and requires admin authentication plus a scoped Cloudflare secret before publishing. Pages CMS continues to handle production content until full end-to-end tests pass.

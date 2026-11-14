@@ -8,3 +8,7 @@ node_modules/
 __pycache__/
 *.zip
 *.png
+visual-editor/node_modules/
+visual-editor/dist/
+.dev.vars*
+.env*
