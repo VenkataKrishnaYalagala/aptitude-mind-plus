@@ -36,7 +36,8 @@ for page in known:
         dest=unquote(scheme.path)
         if not dest:
             continue
-        candidate=(page.parent/dest).resolve()
+        # Leading / is a website-root URL (e.g. /media/brand.png), not an OS path.
+        candidate=((root / dest.lstrip('/')) if dest.startswith('/') else (page.parent / dest)).resolve()
         assert candidate.is_relative_to(root.resolve()), f'Unsafe relative path in {page.name}: {path}'
         assert candidate.exists(), f'Broken local reference in {page.name}: {path}'
 assert 'rights' in (root/'submit.html').read_text()
