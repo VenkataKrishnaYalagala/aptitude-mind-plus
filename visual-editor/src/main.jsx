@@ -4,9 +4,11 @@ import {Puck} from '@puckeditor/core';
 import '@puckeditor/core/no-external.css';
 import {config} from './config.jsx';
 import initialData from '../../content/homepage.visual.json';
+import siteSettings from '../../content/site.json';
 import './editor.css';
 
 const DRAFT_KEY = 'amp-homepage-draft-v1';
+const mediaLogo = /^\/media\/[a-zA-Z0-9_./-]+\.(?:png|jpg|jpeg|webp|svg)$/.test(siteSettings.logo_path || '') && !siteSettings.logo_path.includes('..') ? siteSettings.logo_path : '/assets/brand.svg';
 function restoreDraft() {
   try {
     const text=window.localStorage.getItem(DRAFT_KEY);
@@ -87,7 +89,7 @@ function App() {
   };
   return <div className="amp-editor-shell">
     <header className="amp-editor-banner">
-      <div className="amp-editor-brand"><span className="amp-editor-mark">A+</span><span><strong>Aptitude Mind Plus</strong><small>Visual homepage editor — pilot</small></span></div>
+      <div className="amp-editor-brand"><img className="amp-editor-mark" src={mediaLogo} alt="Aptitude Mind Plus"/><span><strong>Aptitude Mind Plus</strong><small>Visual homepage editor — pilot</small></span></div>
       <div className="amp-editor-info" role="status" aria-live="polite">{status}</div>
       <div className="amp-editor-buttons">
         <button type="button" onClick={()=>saveFile(layout)} title="Download a backup of your current draft">Export draft</button>

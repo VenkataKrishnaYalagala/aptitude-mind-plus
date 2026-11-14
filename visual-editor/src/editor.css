@@ -15,3 +15,4 @@ html,body,#root{margin:0;min-height:100%;font-family:-apple-system,BlinkMacSyste
 .amp-editor-shell > [class*="Puck"]{flex:1;min-height:0}
 .amp-editor-shell > div:last-child{flex:1;min-height:0}
 @media(max-width:880px){.amp-editor-banner{flex-wrap:wrap;gap:10px;padding:10px 14px}.amp-editor-info{order:3;flex-basis:100%}.amp-editor-buttons{margin-left:auto}}
+.amp-editor-mark{object-fit:contain;background:#fff;padding:4px}
