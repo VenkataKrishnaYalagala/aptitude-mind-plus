@@ -39,6 +39,9 @@ def shell(page,title,description,body):
     ann_html=''.join(f'<a class="announcement-item {"current" if i==0 else ""}" href="{safe_update_link(x.get("url",""))}">{escape(x.get("title",""))} <span aria-hidden="true">↗</span></a>' for i,x in enumerate([u for u in updates if u.get('published') and u.get('title')][:5]))
     if not ann_html:ann_html='<a class="announcement-item current" href="lessons.html">Browse free aptitude lessons ↗</a>'
     logo=safe_image(SITE.get('logo_path','')) or 'assets/brand.svg'
+    font_choice = SITE.get('font_style', 'system')
+    if font_choice not in ('system', 'modern', 'readable', 'editorial'):
+        font_choice = 'system'
     contact=SITE.get('contact_email','')
     email_link=f'<a href="mailto:{escape(contact,quote=True)}">Email the team</a>' if re.fullmatch(r'[a-zA-Z0-9_.+%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}',str(contact)) else ''
     channel=SITE.get('youtube_channel_url','')
@@ -50,9 +53,9 @@ def shell(page,title,description,body):
 <meta property="og:title" content="{escape(title,quote=True)}"><meta property="og:description" content="{escape(description,quote=True)}">
 <meta property="og:type" content="website"><meta name="color-scheme" content="light">
 <title>{escape(title)} | Aptitude Mind Plus</title>
-<link rel="icon" type="image/svg+xml" href="assets/brand.svg"><link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="{logo}"><link rel="stylesheet" href="assets/style.css">
 <script src="assets/config.js" defer></script><script src="assets/app.js" defer></script><script src="assets/catalog.js" defer></script><script src="assets/videos.js" defer></script>
-</head><body data-page="{page}">
+</head><body data-page="{page}" data-font="{font_choice}">
 <a class="skip-link" href="#main">Skip to main content</a>
 <div class="announcement" role="region" aria-label="Learning announcements"><div class="announcement-inner"><span class="announcement-prefix">AMP / NOW</span><div class="announcements" id="announcements" aria-live="off">{ann_html}</div><div class="announcement-controls"><button type="button" aria-label="Previous announcement" data-ann-prev>‹</button><button type="button" aria-label="Next announcement" data-ann-next>›</button></div></div></div>
 <header class="header"><div class="wrap header-inner">
