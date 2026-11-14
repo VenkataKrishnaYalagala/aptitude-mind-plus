@@ -6,5 +6,6 @@
   "support_description": "One-to-one or small-group tutoring, structured doubt solving, study planning, and exam-specific feedback. Scope and session details are confirmed before payment.",
   "youtube_channel_url": "",
   "contact_email": "",
-  "logo_path": ""
+  "logo_path": "",
+  "font_style": "system"
 }
