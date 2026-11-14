@@ -2,10 +2,9 @@
   "hero_kicker": "FREE EXAM APTITUDE LEARNING",
   "hero_title": "Understand aptitude. Prepare with confidence.",
   "hero_description": "Learn concepts, watch free lessons, practise original questions, and explore verified previous papers. Pay only when you want personal support.",
+  "font_style": "system",
   "support_price": 3000,
   "support_description": "One-to-one or small-group tutoring, structured doubt solving, study planning, and exam-specific feedback. Scope and session details are confirmed before payment.",
-  "youtube_channel_url": "",
-  "contact_email": "",
-  "logo_path": "",
-  "font_style": "system"
+  "youtube_channel_url": "https://youtube.com/@aptitudemindplus",
+  "logo_path": "/media/glossy-multicolor-circuit-head-emblem-picsart-backgroundremover.png"
 }
