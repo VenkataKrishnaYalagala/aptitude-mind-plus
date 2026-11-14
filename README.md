@@ -67,6 +67,8 @@ The website includes `.pages.yml` and structured data in `content/`, so you can 
 2. Approve the Pages CMS GitHub app for **only this website repository**, not all personal repositories. Your GitHub account controls who can edit.
 3. Open `aptitude-mind-plus` in Pages CMS. The editor reads `.pages.yml` automatically.
 4. To update a headline: choose **Website settings and homepage**, change the field, then **Save**.
+   You can also choose **Site-wide font** on the same screen: `system` (default Apple-style), `modern` (Avenir/Helvetica), `readable` (Verdana), or `editorial` (Georgia). Changing individual heading sizes or page layouts still requires CSS editing.
+   To change the site favicon as well as the header/footer mark, upload your official logo in the **Official brand logo** field and save.
 5. To upload an image: open **Media**, upload the photo/logo, and choose its image field in **Website settings** or **Exam pathways**.
 6. To add a video: open **Free lessons and YouTube videos**, add a lesson row, enter title, topic, description and a **public YouTube share URL**, and set **Published** to true. The player is automatically embedded in privacy-enhanced mode **only when a visitor clicks Play**. Blank or invalid video links produce no fake player.
 7. To change exam course wording: open **Exam pathways**. Do not change the six internal exam codes. To edit the announcement strip: open **Announcement strip**.
