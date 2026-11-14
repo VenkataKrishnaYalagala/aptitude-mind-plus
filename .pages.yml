@@ -21,6 +21,11 @@ content:
       - name: hero_description
         label: Homepage introduction
         type: text
+      - name: font_style
+        label: Site-wide font (system / modern / readable / editorial)
+        type: select
+        options:
+          values: [system, modern, readable, editorial]
       - name: support_price
         label: Tutoring programme price (INR)
         type: number
