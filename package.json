@@ -7,6 +7,7 @@
   "scripts": {
     "test": "node tests/backend.test.mjs",
     "serve": "python3 -m http.server 8000 --directory public",
-    "build": "python3 build_site.py"
+    "build": "python3 build_site.py",
+    "test:visual-editor": "node --test tests/visual-editor.test.mjs"
   }
 }

@@ -25,10 +25,13 @@ jobs:
           node --check public/assets/app.js
           node --check public/assets/catalog.js
           node --check public/assets/videos.js
+          node --check public/assets/materials.js
           find functions -name '*.js' -type f -exec node --check {} \;
+      - name: Community source, permissions and premium safety
+        run: python3 tests/engagement.test.py
       - name: Regenerate site from editable content
         run: python3 build_site.py
       - name: Check static links and metadata
         run: python tests/static_audit.py
       - name: Check Python generator
-        run: python -m py_compile build_site.py course_platform.py
+        run: python -m py_compile build_site.py course_platform.py engagement.py visual_home.py

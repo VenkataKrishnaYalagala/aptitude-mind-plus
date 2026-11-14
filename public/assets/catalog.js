@@ -41,3 +41,20 @@
   document.querySelector('.catalog-search')?.addEventListener('submit',event=>{event.preventDefault();render();});
   render();
 })();
+
+/* Optional saved course action. This stays on the learner's device only. */
+(()=>{
+ 'use strict';
+ const button=document.querySelector('[data-save-course]');
+ if(!button)return;
+ const root=button.closest('[data-course-progress]');
+ const key=root?.dataset.courseKey||'';
+ if(!/^(upsc|gate|ssc|bank|state|rail)$/.test(key))return;
+ const label=root.querySelector('[data-progress-status]');
+ const store='amp-bookmarks-v1';
+ let set=[];
+ try{const raw=JSON.parse(localStorage.getItem(store)||'[]');if(Array.isArray(raw))set=raw.filter(v=>/^(upsc|gate|ssc|bank|state|rail)$/.test(v));}catch{}
+ const show=()=>{const saved=set.includes(key);button.setAttribute('aria-pressed',String(saved));button.textContent=saved?'Saved ✓':'Save this course';if(label)label.textContent=saved?'Saved on this device. No account needed.':'Save this path to revisit it on this device.';};
+ button.addEventListener('click',()=>{if(set.includes(key))set=set.filter(x=>x!==key);else set=[...set,key];try{localStorage.setItem(store,JSON.stringify(set));}catch{}show();});
+ show();
+})();

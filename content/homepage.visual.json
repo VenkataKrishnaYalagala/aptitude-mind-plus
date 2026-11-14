@@ -1,0 +1,81 @@
+{
+  "root": {
+    "props": {
+      "title": "Free Aptitude Learning",
+      "fontStyle": "system"
+    }
+  },
+  "content": [
+    {
+      "type": "Hero",
+      "props": {
+        "id": "amp-hero-1",
+        "eyebrow": "FREE APTITUDE COURSES FOR EVERY STUDENT",
+        "title": "Learn aptitude for free. Get help when you need it.",
+        "description": "Watch lessons, understand concepts, solve practice questions and study previous exam papers. Pay only if you want a teacher to guide you.",
+        "primaryText": "Start learning",
+        "primaryHref": "courses.html",
+        "secondaryText": "View past papers",
+        "secondaryHref": "pyqs.html",
+        "theme": "white"
+      }
+    },
+    {
+      "type": "QuickLinks",
+      "props": {
+        "id": "amp-quick-links-1",
+        "eyebrow": "YOUR STUDY OPTIONS",
+        "heading": "What would you like to do today?",
+        "description": "Choose one option. You can use all free learning materials without signing up."
+      }
+    },
+    {
+      "type": "CourseShelf",
+      "props": {
+        "id": "amp-courses-1",
+        "eyebrow": "LEARN BY EXAM",
+        "heading": "Choose the exam you are preparing for.",
+        "description": "Every learning pathway is free. Start with a concept, watch a lesson and practise.",
+        "count": "3"
+      }
+    },
+    {
+      "type": "FreeLesson",
+      "props": {
+        "id": "amp-lesson-1",
+        "eyebrow": "FREE PRACTICE LESSON",
+        "heading": "Learn how to find the last digit of a large power.",
+        "description": "Read the explanation, then try eight questions written by Aptitude Mind Plus.",
+        "buttonText": "Try the lesson"
+      }
+    },
+    {
+      "type": "MaterialsShelf",
+      "props": {
+        "id": "amp-materials-1",
+        "eyebrow": "FREE AND OPTIONAL PAID MATERIALS",
+        "heading": "Good materials make study easier.",
+        "description": "Get free practice and notes. More detailed workbooks will be available to buy when ready."
+      }
+    },
+    {
+      "type": "CommunitySpotlight",
+      "props": {
+        "id": "amp-community-1",
+        "eyebrow": "LEARN WITH OUR COMMUNITY",
+        "heading": "Follow along as we learn.",
+        "description": "Watch our lessons, see new questions and follow study updates on our social pages."
+      }
+    },
+    {
+      "type": "TutorCTA",
+      "props": {
+        "id": "amp-support-1",
+        "eyebrow": "OPTIONAL PAID SUPPORT",
+        "heading": "Need help from a teacher?",
+        "description": "Core lessons, concepts and practice stay free. Some optional workbooks will be paid. If you want personal teacher support, apply for ₹2,999 per programme.",
+        "buttonText": "Apply for teacher support"
+      }
+    }
+  ]
+}

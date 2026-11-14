@@ -5,7 +5,7 @@ This is the **website only**. The Instagram/Facebook daily publisher is a separa
 ## Site features
 
 - Minimal blue-and-white responsive pages: Home, **Free Video Lessons**, Concepts, Practice, PYQs, Courses, Tutoring, Submit a Question, and Admin Review.
-- **Free-first model:** original explanations, free guided/video lessons, courses, PYQs and practice are available to everyone. Optional personal tutoring/doubt-solving is advertised from **₹3,000 per support programme**; the exact session scope and terms must be agreed before payment.
+- **Free-first model:** original explanations, free guided/video lessons, courses, PYQs and practice are available to everyone. Some advanced workbooks will be paid when ready; paid files require secure fulfilment before sale. Optional personal tutoring/doubt-solving is advertised from **₹3,000 per support programme**; the exact session scope and terms must be agreed before payment.
 - Contributors may submit text and an optional compressed photo after asserting sharing rights. Submissions remain private until admin approval; verified official PYQs require separate human verification.
 - A private admin dashboard for review, rejection, publishing, and course enquiries. A student cannot publish directly.
 - No credit-card collection, payment checkout, trackers, arbitrary external package dependencies, or invented official exam papers.
@@ -67,8 +67,6 @@ The website includes `.pages.yml` and structured data in `content/`, so you can 
 2. Approve the Pages CMS GitHub app for **only this website repository**, not all personal repositories. Your GitHub account controls who can edit.
 3. Open `aptitude-mind-plus` in Pages CMS. The editor reads `.pages.yml` automatically.
 4. To update a headline: choose **Website settings and homepage**, change the field, then **Save**.
-   You can also choose **Site-wide font** on the same screen: `system` (default Apple-style), `modern` (Avenir/Helvetica), `readable` (Verdana), or `editorial` (Georgia). Changing individual heading sizes or page layouts still requires CSS editing.
-   To change the site favicon as well as the header/footer mark, upload your official logo in the **Official brand logo** field and save.
 5. To upload an image: open **Media**, upload the photo/logo, and choose its image field in **Website settings** or **Exam pathways**.
 6. To add a video: open **Free lessons and YouTube videos**, add a lesson row, enter title, topic, description and a **public YouTube share URL**, and set **Published** to true. The player is automatically embedded in privacy-enhanced mode **only when a visitor clicks Play**. Blank or invalid video links produce no fake player.
 7. To change exam course wording: open **Exam pathways**. Do not change the six internal exam codes. To edit the announcement strip: open **Announcement strip**.
@@ -93,3 +91,20 @@ The site's small public course images are saved with GitHub through Pages CMS. S
 ## Admin and launch checks before taking real applications
 
 Set up and test D1, R2, bindings `DB` / `UPLOADS`, and secrets `ADMIN_PASSWORD` / `SESSION_SECRET`; the public front end can be visited before this, but submissions stay disabled. Add Cloudflare Turnstile anti-bot protection, contact details, a privacy and deletion policy, and verified copyright permissions. Obtain the owner-supplied official logo before branding signoff. Provide captioned videos and descriptive lesson notes for accessibility and search visibility. YouTube videos can be edited and re-uploaded via the YouTube owner account, not the website CMS itself.
+
+
+## Simplified learning navigation (development preview)
+
+The site groups the previous Courses, Concepts and Video Lessons menu entries under a single **Learn** destination. The four top-level links are Learn, Practice, Past papers and Tutoring. The logo remains the home link. Existing `lessons.html` and `concepts.html` URLs continue to work and are linked inside Learn and the course details.
+
+The Learn page offers exam filtering, fast local search, real course/topic links and a free learning sequence. The six exam detail pages link to relevant lesson notes, topics, original practice and the reviewed past-paper library. The optional **Save this course** button uses browser-only storage (no accounts or server-side tracking). We have not invented student ratings, course duration, certificates, payment gateways, recorded video lessons or exam results.
+
+This feature is staged on `feature/visual-homepage-editor` for review and is not merged to the live site until the editor and backend deployment are verified.
+
+## Latest learning model
+
+All exam course resources, concept notes, original practice and available videos remain **free**. Optional personal tutoring is **₹2,999 per support programme**, subject to agreed session scope, schedule and terms. Past-paper references are indexed by exam, year, topic and concept; source status is shown and private Google Drive PDFs are **not** made public. A student can ask a **private doubt** separately from contributing a question to the public moderated library.
+
+## Social links, comments, and study materials
+
+The editor now exposes **Social accounts and community text**, **Public social posts to feature**, **Learner comments (permission required)**, and **Free and optional paid study materials** in Pages CMS. Leave Instagram and Facebook blank until you have verified the real official URLs. Only approved, consented, source-linked comments are shown as testimonials; no automated scraping or imaginary reviews. Public-post cards open the source on the original platform. Future paid downloads need authentication, checkout, protected delivery and legal/consumer terms. A planned workbook is not available for purchase. See content/social.json, content/social-posts.json, content/feedback.json, content/materials.json.

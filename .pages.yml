@@ -21,11 +21,6 @@ content:
       - name: hero_description
         label: Homepage introduction
         type: text
-      - name: font_style
-        label: Site-wide font (system / modern / readable / editorial)
-        type: select
-        options:
-          values: [system, modern, readable, editorial]
       - name: support_price
         label: Tutoring programme price (INR)
         type: number
@@ -133,4 +128,116 @@ content:
         label: Link to an internal page
         type: string
       - name: published
+        type: boolean
+
+  - name: social
+    label: Social accounts and community text
+    type: file
+    path: content/social.json
+    format: json
+    fields:
+      - name: youtube_url
+        label: YouTube channel URL
+        type: string
+      - name: instagram_url
+        label: Official Instagram profile URL (leave blank until verified)
+        type: string
+      - name: facebook_url
+        label: Official Facebook Page URL (leave blank until verified)
+        type: string
+      - name: section_heading
+        label: Social section headline
+        type: string
+      - name: section_description
+        label: Social section description
+        type: text
+  - name: social_posts
+    label: Public social posts to feature
+    type: file
+    path: content/social-posts.json
+    format: json
+    list: true
+    fields:
+      - name: platform
+        label: Social platform
+        type: select
+        options:
+          values: [youtube, instagram, facebook]
+      - name: title
+        label: Title shown on website
+        type: string
+      - name: summary
+        label: Short summary
+        type: text
+      - name: source_url
+        label: Verified original public post link
+        type: string
+      - name: published
+        label: Feature this post
+        type: boolean
+  - name: feedback
+    label: Learner comments (permission required)
+    type: file
+    path: content/feedback.json
+    format: json
+    list: true
+    fields:
+      - name: quote
+        label: Exact genuine comment (no paraphrased testimonials)
+        type: text
+      - name: display_name
+        label: Name approved for public display
+        type: string
+      - name: platform
+        type: select
+        options:
+          values: [youtube, instagram, facebook]
+      - name: source_url
+        label: Original public comment/post link
+        type: string
+      - name: permission_confirmed
+        label: The author explicitly agreed to this use
+        type: boolean
+      - name: approved
+        label: You have reviewed and approved it
+        type: boolean
+  - name: materials
+    label: Free and optional paid study materials
+    type: file
+    path: content/materials.json
+    format: json
+    list: true
+    fields:
+      - name: slug
+        label: Unique resource identifier
+        type: string
+      - name: title
+        type: string
+      - name: summary
+        type: text
+      - name: exam
+        type: select
+        options:
+          values: [all, upsc, gate, ssc, bank, state, rail]
+      - name: kind
+        label: Type (notes, workbook, practice)
+        type: string
+      - name: access
+        label: Free or Paid
+        type: select
+        options:
+          values: [free, paid]
+      - name: status
+        label: Availability
+        type: select
+        options:
+          values: [available, planned]
+      - name: href
+        label: Internal free resource page (do not link paid file)
+        type: string
+      - name: price_inr
+        label: Price in INR (premium only; optional)
+        type: number
+      - name: published
+        label: Display in catalog
         type: boolean

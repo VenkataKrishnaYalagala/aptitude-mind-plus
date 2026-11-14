@@ -1,0 +1,98 @@
+name: Visual homepage editor (development)
+
+on:
+  push:
+    branches: [feature/visual-homepage-editor]
+    paths:
+      - 'visual-editor/**'
+      - 'content/**'
+      - 'pyq_library.py'
+      - 'functions/api/doubts.js'
+      - 'functions/api/admin/doubts.js'
+      - 'functions/api/admin/resolve-doubt.js'
+      - 'schema/**'
+      - 'tests/**'
+      - 'visual_home.py'
+      - 'engagement.py'
+      - 'public/assets/engagement.css'
+      - 'public/assets/materials.js'
+      - 'course_platform.py'
+      - 'public/assets/style.css'
+      - 'public/assets/catalog.js'
+      - 'build_site.py'
+      - 'public/assets/visual-home.css'
+      - 'functions/api/editor/**'
+      - 'tests/visual-editor.test.mjs'
+      - 'tests/visual-homepage.test.py'
+      - 'tests/static_audit.py'
+      - '.github/workflows/visual-home-editor.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: visual-homepage-dev
+  cancel-in-progress: false
+
+jobs:
+  validate-and-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run existing backend security tests
+        run: npm test
+      - name: Verify PYQ index and private doubt behavior
+        run: |
+          python3 -m py_compile pyq_library.py
+          node --check public/assets/pyq-index.js
+          node --check public/assets/app.js
+      - name: Verify community and premium content safety
+        run: |
+          python3 tests/engagement.test.py
+          node --check public/assets/materials.js
+      - name: Test visual editor API validation and access control
+        run: node --test tests/visual-editor.test.mjs
+      - name: Generate responsive homepage from editor data
+        run: python3 build_site.py
+      - name: Test safe homepage HTML rendering
+        run: python3 tests/visual-homepage.test.py
+      - name: Check internal links and metadata
+        run: python3 tests/static_audit.py
+      - name: Install visual editor dependencies
+        run: npm install --prefix visual-editor --no-audit --no-fund
+      - name: Compile Puck editor (React/Vite)
+        run: npm run build --prefix visual-editor
+      - name: Verify visual editor bundle exists
+        run: |
+          test -f public/visual-editor/index.html
+          test -n "$(find public/visual-editor/assets -type f -name '*.js' -print -quit)"
+      - name: Upload preview artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: aptitude-mind-plus-visual-homepage-preview
+          path: |
+            public/index.html
+            public/assets/visual-home.css
+            public/visual-editor/
+          retention-days: 5
+      - name: Update build artifacts on development branch only
+        if: github.event_name == 'push' && github.ref == 'refs/heads/feature/visual-homepage-editor'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/*.html public/visual-editor/
+          if ! git diff --staged --quiet; then
+            git commit -m 'build: refresh visual homepage editor preview assets'
+            git push origin HEAD:feature/visual-homepage-editor
+          fi

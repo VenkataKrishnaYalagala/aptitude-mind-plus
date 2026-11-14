@@ -5,7 +5,7 @@ from urllib.parse import urlsplit, unquote
 
 root = Path(__file__).resolve().parent.parent / 'public'
 known = sorted(root.glob('*.html'))
-assert len(known) == 17, f'Expected 16 pages, got {len(known)}'
+assert len(known) == 20, f'Expected 20 pages, got {len(known)}'
 
 class References(HTMLParser):
     def __init__(self):
@@ -36,14 +36,13 @@ for page in known:
         dest=unquote(scheme.path)
         if not dest:
             continue
-        # Leading / is a website-root URL (e.g. /media/brand.png), not an OS path.
         candidate=((root / dest.lstrip('/')) if dest.startswith('/') else (page.parent / dest)).resolve()
         assert candidate.is_relative_to(root.resolve()), f'Unsafe relative path in {page.name}: {path}'
         assert candidate.exists(), f'Broken local reference in {page.name}: {path}'
 assert 'rights' in (root/'submit.html').read_text()
 assert 'LEARNING ACCESS' in (root/'courses.html').read_text()
 assert 'FREE' in (root/'courses.html').read_text()
-assert '₹3,000' in (root/'tutoring.html').read_text()
+assert '₹2,999' in (root/'tutoring.html').read_text()
 assert 'Free Video Lessons' in (root/'lessons.html').read_text()
 assert 'admin' in (root/'admin.html').read_text()
 print(f'PASS: {len(known)} HTML pages, page titles, image alt text, and all local links')
@@ -53,3 +52,16 @@ for exam in ('upsc','gate','ssc','bank','state','rail'):
     assert 'Course Guide' in html or 'COURSE GUIDE' in html
     assert 'SELF-PACED LEARNING' in html and 'FREE' in html
     assert 'tutoring.html?course=' in html
+
+# Clear navigation: overlapping categories are nested under Learn, not repeated in the header.
+for page in known:
+    html=page.read_text(encoding='utf8')
+    assert '<nav class="desktop-nav"' in html and '>Learn</a>' in html, f'Learn navigation missing: {page.name}'
+    assert 'aria-label="Primary navigation"' in html, f'Accessible main navigation missing: {page.name}'
+assert 'id="browse-courses"' in (root/'courses.html').read_text(encoding='utf8')
+assert 'id="course-resources"' in (root/'courses.html').read_text(encoding='utf8')
+for exam in ('upsc','gate','ssc','bank','state','rail'):
+    html=(root/f'course-{exam}.html').read_text(encoding='utf8')
+    assert 'id="learning"' in html
+    assert 'data-save-course' in html
+print('PASS: consolidated learning nav, resources hub and linked learning journeys')

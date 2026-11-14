@@ -74,6 +74,20 @@ function initQuestionSubmit(){const form=$('[data-question-form]');if(!form)retu
  });
 }initQuestionSubmit();
 
+function initStudentDoubts(){const form=$('[data-doubt-form]');if(!form)return;
+ const notice=$('[data-doubt-notice]');let busy=false;
+ form.addEventListener('submit',async ev=>{ev.preventDefault();if(busy)return;
+  const fd=new FormData(form);if(String(fd.get('website')||'').trim())return;
+  const data={name:String(fd.get('name')||'').trim(),email:String(fd.get('email')||'').trim(),exam:String(fd.get('exam')||''),topic:String(fd.get('topic')||'').trim(),question:String(fd.get('question')||'').trim(),consent:!!fd.get('consent')};
+  if(data.name.length<2||!data.email||!data.exam||data.topic.length<2||data.question.length<20||!data.consent){setNotice(notice,'Please add your name, email, exam, topic and question (at least 20 characters), and agree to be contacted.','error');return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)){setNotice(notice,'Please enter a valid email address.','error');return;}
+  busy=true;const button=$('button[type=submit]',form);button.disabled=true;setNotice(notice,'Sending your doubt privately…');
+  try{const result=await requestJSON('/api/doubts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+   setNotice(notice,`Your doubt was received privately. Reference: ${result.id.slice(0,8).toUpperCase()}. We will reply by email when we can. It will not be posted on the website.`, 'success');form.reset();}
+  catch(err){setNotice(notice,err.message,'error');}finally{busy=false;button.disabled=false;}
+ });
+}initStudentDoubts();
+
 function initApplications(){const form=$('[data-application-form]');if(!form)return;
  const param=new URLSearchParams(location.search).get('course');if(param&&EXAMS[param])form.elements.exam.value=param;
  const notice=$('[data-application-notice]');let busy=false;
@@ -107,6 +121,19 @@ function initAdmin(){const panel=$('[data-admin-panel]');if(!panel)return;
  $('[data-admin-logout]')?.addEventListener('click',async()=>{try{await requestJSON('/api/admin/logout',{method:'POST'});}catch(e){}location.reload();});
  $$('[data-admin-tab]').forEach(b=>b.addEventListener('click',()=>{tab=b.dataset.adminTab;$$('[data-admin-tab]').forEach(x=>{const active=x===b;x.classList.toggle('active',active);x.setAttribute('aria-pressed',String(active));});loadTab();}));
  async function loadTab(){content.replaceChildren(elem('div','empty-state','Loading…'));setNotice(notice,'');try{
+  if(tab==='doubts'){
+   const r=await requestJSON('/api/admin/doubts?status=all');content.replaceChildren();const counter=$('[data-doubt-counter]');if(counter)counter.textContent=String(r.pending_count??0);
+   if(!r.items.length)content.append(elem('div','empty-state','No student doubts have been received yet.'));
+   for(const item of r.items){const article=elem('article','application-card');article.append(elem('h3','',`${item.student_name} · ${EXAMS[item.exam]||item.exam}`));
+    const tags=elem('div','mod-tags');[item.topic,item.status,item.created_at].filter(Boolean).forEach(x=>tags.append(elem('span','',x)));article.append(tags);
+    article.append(elem('p','',item.question));const actions=elem('div','mod-actions');const email=elem('a','button button-light','Reply by email');email.href='mailto:'+encodeURIComponent(item.student_email)+'?subject='+encodeURIComponent('Aptitude Mind Plus: Your student doubt');actions.append(email);
+    const mark=elem('button','button button-primary',item.status==='answered'?'Mark as new':'Mark as answered');mark.type='button';mark.addEventListener('click',async()=>{mark.disabled=true;
+     try{await requestJSON('/api/admin/resolve-doubt',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:item.id,status:item.status==='answered'?'new':'answered',private_notes:item.private_notes||''})});await loadTab();}
+     catch(e){setNotice(notice,e.message,'error');mark.disabled=false;}
+    });actions.append(mark);article.append(actions);content.append(article);
+   }
+   return;
+  }
   if(tab==='applications'){const r=await requestJSON('/api/admin/applications');content.replaceChildren();if(!r.items.length)content.append(elem('div','empty-state','No course applications yet.'));r.items.forEach(i=>{const item=elem('article','application-card');item.append(elem('h3','',`${i.name} · ${EXAMS[i.exam]||i.exam}`));if(i.email){const a=elem('a','','Email applicant');a.href='mailto:'+i.email;item.append(a);}item.append(elem('p','',`Phone: ${i.phone||'—'}`));item.append(elem('p','',`Message: ${i.message||'—'}`));item.append(elem('p','',`Received: ${i.created_at||''}`));content.append(item);});return;}
   const r=await requestJSON('/api/admin/questions?status='+(tab==='pending'?'pending':'reviewed'));content.replaceChildren();$('[data-pending-counter]').textContent=String(r.pending_count??0);if(!r.items.length)content.append(elem('div','empty-state',tab==='pending'?'No questions waiting for review.':'No reviewed questions yet.'));
   r.items.forEach(i=>{const article=elem('article','moderation-item');article.append(elem('h3','',i.question||'Question in the attached image'));const tags=elem('div','mod-tags');[EXAMS[i.exam]||i.exam,i.topic,i.exam_year||'',i.status].filter(Boolean).forEach(t=>tags.append(elem('span','',t)));article.append(tags);if(i.has_image){const img=elem('img');img.src=`/api/image/${encodeURIComponent(i.id)}`;img.alt='Uploaded question for moderation';article.append(img);}if(i.answer)article.append(elem('div','mod-answer',`Proposed answer: ${i.answer}`));if(i.source_url){const a=elem('a','text-link','Inspect provided source ↗');a.target='_blank';a.rel='noopener noreferrer';a.href=i.source_url;article.append(a);}if(i.name||i.email)article.append(elem('p','',`Contributor: ${i.name||'Anonymous'}${i.email?' • '+i.email:''}`));if(tab==='pending'){const actions=elem('div','mod-actions');const verify=elem('label');const cb=elem('input');cb.type='checkbox';verify.append(cb,elem('span','','I verified the official paper, year and source'));actions.append(verify);const approve=elem('button','button button-primary','Approve & publish'),reject=elem('button','button button-light reject-btn','Reject');approve.type=reject.type='button';approve.addEventListener('click',()=>review(i.id,'approved',cb.checked));reject.addEventListener('click',()=>review(i.id,'rejected',false));actions.append(approve,reject);article.append(actions);}content.append(article);});
