@@ -16,7 +16,7 @@ const env={
 };
 
 test('valid visual page passes schema checks',()=>assert.equal(validateLayout(seed),null));
-test('all supported block types are in the sample schema',()=>assert.deepEqual(seed.content.map(x=>x.type),['Hero','CourseShelf','FreeLesson','TutorCTA']));
+test('all supported block types are in the sample schema',()=>assert.deepEqual(seed.content.map(x=>x.type),['Hero','QuickLinks','CourseShelf','FreeLesson','TutorCTA']));
 test('rejects HTML tags only when used as dangerous link targets',()=>{
  const x=clone(seed);x.content[0].props.primaryHref='javascript:alert(1)';assert.match(validateLayout(x),/destination/);
 });

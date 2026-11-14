@@ -5,7 +5,7 @@ This is the **website only**. The Instagram/Facebook daily publisher is a separa
 ## Site features
 
 - Minimal blue-and-white responsive pages: Home, **Free Video Lessons**, Concepts, Practice, PYQs, Courses, Tutoring, Submit a Question, and Admin Review.
-- **Free-first model:** original explanations, free guided/video lessons, courses, PYQs and practice are available to everyone. Optional personal tutoring/doubt-solving is advertised from **₹3,000 per support programme**; the exact session scope and terms must be agreed before payment.
+- **Free-first model:** original explanations, free guided/video lessons, courses, PYQs and practice are available to everyone. Optional personal tutoring/doubt-solving is advertised from **₹2,999 per support programme**; the exact session scope and terms must be agreed before payment.
 - Contributors may submit text and an optional compressed photo after asserting sharing rights. Submissions remain private until admin approval; verified official PYQs require separate human verification.
 - A private admin dashboard for review, rejection, publishing, and course enquiries. A student cannot publish directly.
 - No credit-card collection, payment checkout, trackers, arbitrary external package dependencies, or invented official exam papers.
@@ -100,3 +100,14 @@ The site groups the previous Courses, Concepts and Video Lessons menu entries un
 The Learn page offers exam filtering, fast local search, real course/topic links and a free learning sequence. The six exam detail pages link to relevant lesson notes, topics, original practice and the reviewed past-paper library. The optional **Save this course** button uses browser-only storage (no accounts or server-side tracking). We have not invented student ratings, course duration, certificates, payment gateways, recorded video lessons or exam results.
 
 This feature is staged on `feature/visual-homepage-editor` for review and is not merged to the live site until the editor and backend deployment are verified.
+
+## Latest learning model
+
+All exam course resources, concept notes, original practice and available videos remain **free**. Optional personal tutoring is **₹2,999 per support programme**, subject to agreed session scope, schedule and terms. Past-paper references are indexed by exam, year, topic and concept; source status is shown and private Google Drive PDFs are **not** made public. A student can ask a **private doubt** separately from contributing a question to the public moderated library.
+
+
+## Student doubts and previous exam references
+
+**Student Doubts** is a private enquiry, separate from the exam-question contribution queue. The `doubts.html` form sends to `POST /api/doubts`; signed-in administrators view `GET /api/admin/doubts` and can mark a doubt answered with `POST /api/admin/resolve-doubt`. The owner replies manually by email, not automatically. These routes require private Cloudflare DB/R2 bindings and administrator secrets. For an existing D1 database, run `schema/migrations/2026-11-student-doubts.sql` safely; do **not** reset the existing tables.
+
+**Past Papers** index is generated from `content/pyq-index.json` by `pyq_library.py`. Initial import contains 55 curated reference records, including 30 individually classified APPSC Group-II 2024 aptitude references and 25 additional paper/set references. Topic/concept labels, source authenticity and question numbers are from the owner's Drive reference registers; they do not substitute for exact original question text, diagrams or a completed official-key audit. Private Google Drive PDF files have not been shared or copied to the public website. Paper links point to official exam authorities where available; third-party source copies remain marked pending verification. A complete online question bank requires reviewing the underlying papers, exact copyright permissions and item-by-item transcription/mapping.

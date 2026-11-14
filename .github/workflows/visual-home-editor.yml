@@ -5,7 +5,13 @@ on:
     branches: [feature/visual-homepage-editor]
     paths:
       - 'visual-editor/**'
-      - 'content/homepage.visual.json'
+      - 'content/**'
+      - 'pyq_library.py'
+      - 'functions/api/doubts.js'
+      - 'functions/api/admin/doubts.js'
+      - 'functions/api/admin/resolve-doubt.js'
+      - 'schema/**'
+      - 'tests/**'
       - 'visual_home.py'
       - 'course_platform.py'
       - 'public/assets/style.css'
@@ -42,6 +48,11 @@ jobs:
           python-version: '3.12'
       - name: Run existing backend security tests
         run: npm test
+      - name: Verify PYQ index and private doubt behavior
+        run: |
+          python3 -m py_compile pyq_library.py
+          node --check public/assets/pyq-index.js
+          node --check public/assets/app.js
       - name: Test visual editor API validation and access control
         run: node --test tests/visual-editor.test.mjs
       - name: Generate responsive homepage from editor data

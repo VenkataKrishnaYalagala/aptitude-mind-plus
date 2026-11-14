@@ -18,13 +18,14 @@ BLOCKS = {
     'Hero': {'eyebrow': 100, 'title': 220, 'description': 1400, 'primaryText': 90, 'primaryHref': 90, 'secondaryText': 90, 'secondaryHref': 90, 'theme': 16},
     'ExamPaths': {'eyebrow': 100, 'heading': 220, 'description': 1400},
     'CourseShelf': {'eyebrow': 100, 'heading': 220, 'description': 1400, 'count': 3},
+    'QuickLinks': {'eyebrow': 100, 'heading': 220, 'description': 1400},
     'FreeLesson': {'eyebrow': 100, 'heading': 220, 'description': 1400, 'buttonText': 90},
     'TextSection': {'eyebrow': 100, 'heading': 220, 'body': 2500, 'align': 10},
     'ImageSection': {'eyebrow': 100, 'heading': 220, 'body': 1200, 'src': 320, 'alt': 220},
     'TutorCTA': {'eyebrow': 100, 'heading': 220, 'description': 1400, 'buttonText': 90},
     'Spacer': {'size': 10},
 }
-PAGES = {'courses.html', 'lessons.html', 'concepts.html', 'practice.html', 'pyqs.html', 'tutoring.html', 'submit.html'}
+PAGES = {'courses.html', 'lessons.html', 'concepts.html', 'practice.html', 'pyqs.html', 'tutoring.html', 'submit.html', 'doubts.html'}
 IMAGE = re.compile(r'^/media/[a-zA-Z0-9_./-]+\.(?:png|jpg|jpeg|webp|svg)$')
 ID = re.compile(r'^[a-zA-Z0-9_-]{1,80}$')
 COLORS = ['#2459d3','#9854e0','#ef8c28','#159477','#c65f63','#3971bd']
@@ -110,6 +111,10 @@ def render_item(item):
               <div class="ampv-course-body"><small>FREE COURSE GUIDE</small><h3>{e(course['title'])}</h3><p>{e(course['summary'])}</p><div class="ampv-course-foot">LEARNING ACCESS <b>FREE</b></div></div>
             </a>''')
         return f'<section class="ampv-section ampv-soft"><div class="ampv-wrap">{wrap_header(p.get("eyebrow",""),p.get("heading",""),p.get("description",""))}<div class="ampv-course-grid">{"".join(cards)}</div></div></section>'
+    if kind=='QuickLinks':
+        destinations=[('Learn','Choose your exam and start studying','courses.html','01'),('Practice','Try questions we created','practice.html','02'),('Past Papers','Find previous exam questions','pyqs.html','03'),('Ask a Doubt','Send your question to our team','doubts.html','04'),('Tutoring','Apply for personal teacher support','tutoring.html','05')]
+        tiles=''.join(f'<a class="ampv-shortcut" href="{e(href)}"><span>{number}</span><h3>{e(title)}</h3><p>{e(desc)}</p><small>Open →</small></a>' for title,desc,href,number in destinations)
+        return f'<section class="ampv-section ampv-quicklinks"><div class="ampv-wrap">{wrap_header(p.get("eyebrow",""),p.get("heading",""),p.get("description",""))}<div class="ampv-shortcuts">{tiles}</div></div></section>'
     if kind=='FreeLesson':
         return f'''<section class="ampv-section ampv-lesson-feature"><div class="ampv-wrap ampv-feature-grid">
           <div>{wrap_header(p.get('eyebrow',''),p.get('heading',''),p.get('description',''))}<a class="ampv-btn ampv-btn-primary" href="practice.html#lesson">{get('buttonText','Try the lesson')}</a><p class="ampv-feature-note">No account required &middot; Worked explanations included</p></div>

@@ -4,13 +4,14 @@ const SPECS={
  Hero:{eyebrow:100,title:220,description:1400,primaryText:90,primaryHref:90,secondaryText:90,secondaryHref:90,theme:16},
  ExamPaths:{eyebrow:100,heading:220,description:1400},
  CourseShelf:{eyebrow:100,heading:220,description:1400,count:3},
+ QuickLinks:{eyebrow:100,heading:220,description:1400},
  FreeLesson:{eyebrow:100,heading:220,description:1400,buttonText:90},
  TextSection:{eyebrow:100,heading:220,body:2500,align:10},
  ImageSection:{eyebrow:100,heading:220,body:1200,src:320,alt:220},
  TutorCTA:{eyebrow:100,heading:220,description:1400,buttonText:90},
  Spacer:{size:10}
 };
-const PAGES=new Set(['courses.html','lessons.html','concepts.html','practice.html','pyqs.html','tutoring.html','submit.html']);
+const PAGES=new Set(['courses.html','lessons.html','concepts.html','practice.html','pyqs.html','tutoring.html','submit.html','doubts.html']);
 const image=/^\/media\/[a-zA-Z0-9_./-]+\.(?:png|jpg|jpeg|webp|svg)$/;
 const id=/^[a-zA-Z0-9_-]{1,80}$/;
 const subsets=(v,values)=>values.includes(v);

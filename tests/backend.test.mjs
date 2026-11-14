@@ -11,6 +11,9 @@ import {onRequestGet as image} from '../functions/api/image/[id].js';
 import {onRequestPost as application} from '../functions/api/applications.js';
 import {onRequestGet as adminApps} from '../functions/api/admin/applications.js';
 import {onRequestPost as logout} from '../functions/api/admin/logout.js';
+import {onRequestPost as submitDoubt} from '../functions/api/doubts.js';
+import {onRequestGet as adminDoubts} from '../functions/api/admin/doubts.js';
+import {onRequestPost as resolveDoubt} from '../functions/api/admin/resolve-doubt.js';
 const sqlDB=new DatabaseSync(':memory:');sqlDB.exec(readFileSync(new URL('../schema/schema.sql',import.meta.url),'utf8'));
 const DB={prepare(sql){
  function bound(params){return {
@@ -63,6 +66,26 @@ const appl=await check(await application({request:mk('/api/applications','POST',
 await check(await application({request:mk('/api/applications','POST',{name:'Parent Two',email:'p2@example.com',phone:'',exam:'ssc',message:'No consent',consent:false},'',site),env}),400);
 assert.equal((await check(await adminApps({request:mk('/api/admin/applications','GET',null,cookie),env}),200)).items.length,1);
 await check(await adminApps({request:mk('/api/admin/applications'),env}),401);
+// Student doubts are a separate, strictly private queue and must never be published in PYQs.
+const dbase={name:'Parent One',email:'parent@example.com',exam:'upsc',topic:'Number systems',question:'Can you explain why the units digit of powers of 7 repeats every four steps?',consent:true};
+await check(await submitDoubt({request:mk('/api/doubts','POST',{...dbase,consent:false}),env}),400);
+await check(await submitDoubt({request:mk('/api/doubts','POST',{...dbase,email:'not-an-email'}),env}),400);
+await check(await submitDoubt({request:mk('/api/doubts','POST',{...dbase,question:'Too short'}),env}),400);
+await check(await submitDoubt({request:mk('/api/doubts','POST',dbase,'','https://evil.example'),env}),403);
+const d=await check(await submitDoubt({request:mk('/api/doubts','POST',dbase),env}),201);
+assert.equal(d.status,'received');assert.equal(d.published,false);
+assert.equal((await check(await questionsGet({request:mk('/api/questions?q=units%20digit'),env}),200)).items.some(x=>x.question.includes('explain why')),false,'private doubts cannot leak into public question list');
+await check(await adminDoubts({request:mk('/api/admin/doubts'),env}),401);
+const inbox=await check(await adminDoubts({request:mk('/api/admin/doubts','GET',null,cookie),env}),200);
+assert.equal(inbox.pending_count,1);assert.equal(inbox.items.length,1);
+assert.equal(inbox.items[0].student_email,dbase.email);
+await check(await resolveDoubt({request:mk('/api/admin/resolve-doubt','POST',{id:d.id,status:'answered'}),env}),401);
+await check(await resolveDoubt({request:mk('/api/admin/resolve-doubt','POST',{id:d.id,status:'answered'},cookie,'https://evil.example'),env}),403);
+await check(await resolveDoubt({request:mk('/api/admin/resolve-doubt','POST',{id:d.id,status:'published'},cookie),env}),400);
+await check(await resolveDoubt({request:mk('/api/admin/resolve-doubt','POST',{id:d.id,status:'answered',private_notes:'Email response sent manually'},cookie),env}),200);
+const inbox2=await check(await adminDoubts({request:mk('/api/admin/doubts?status=handled','GET',null,cookie),env}),200);
+assert.equal(inbox2.pending_count,0);assert.equal(inbox2.items[0].status,'answered');
+assert.equal(inbox2.items[0].private_notes,'Email response sent manually');
 const off=await check(await logout({request:mk('/api/admin/logout','POST',{},cookie),env}),200);assert.equal(off.authenticated,false);
 const st=await check(await questionsGet({request:mk('/api/questions?q=%25'),env}),200);assert.ok(Array.isArray(st.items));
-console.log('PASS: 21 moderation, object storage, privacy, authentication, upload, enquiry and search checks');
+console.log('PASS: 34 moderation, private doubts, object storage, authentication, upload, enquiry and search checks');

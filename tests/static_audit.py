@@ -5,7 +5,7 @@ from urllib.parse import urlsplit, unquote
 
 root = Path(__file__).resolve().parent.parent / 'public'
 known = sorted(root.glob('*.html'))
-assert len(known) == 17, f'Expected 17 pages, got {len(known)}'
+assert len(known) == 18, f'Expected 18 pages, got {len(known)}'
 
 class References(HTMLParser):
     def __init__(self):
@@ -42,7 +42,7 @@ for page in known:
 assert 'rights' in (root/'submit.html').read_text()
 assert 'LEARNING ACCESS' in (root/'courses.html').read_text()
 assert 'FREE' in (root/'courses.html').read_text()
-assert '₹3,000' in (root/'tutoring.html').read_text()
+assert '₹2,999' in (root/'tutoring.html').read_text()
 assert 'Free Video Lessons' in (root/'lessons.html').read_text()
 assert 'admin' in (root/'admin.html').read_text()
 print(f'PASS: {len(known)} HTML pages, page titles, image alt text, and all local links')

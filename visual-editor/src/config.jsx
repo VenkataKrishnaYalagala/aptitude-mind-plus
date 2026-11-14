@@ -9,7 +9,8 @@ const options = [
   ['Practice', 'practice.html'],
   ['PYQ library', 'pyqs.html'],
   ['Tutoring', 'tutoring.html'],
-  ['Submit a question', 'submit.html']
+  ['Submit a question', 'submit.html'],
+  ['Ask a doubt', 'doubts.html']
 ].map(([label, value]) => ({ label, value }));
 
 const s = (value) => typeof value === 'string' ? value : '';
@@ -27,7 +28,7 @@ function Heading({eyebrow,heading,description,align='left'}) {
 
 export const config = {
   categories: {
-    essentials: {title: 'Main page sections', components: ['Hero','CourseShelf','FreeLesson','TutorCTA','ExamPaths','TextSection']},
+    essentials: {title: 'Main page sections', components: ['Hero','QuickLinks','CourseShelf','FreeLesson','TutorCTA','ExamPaths','TextSection']},
     extras: {title: 'Images and spacing', components: ['ImageSection','Spacer']}
   },
   root: {
@@ -56,7 +57,7 @@ export const config = {
         secondaryHref:{type:'select',label:'Second button destination',options},
         theme:{type:'select',label:'Background',options:[{label:'Soft blue',value:'blue'},{label:'Clean white',value:'white'},{label:'Deep navy',value:'navy'}]}
       },
-      defaultProps:{eyebrow:'LEARN FREE',title:'Understand aptitude. Prepare with confidence.',description:'Explore free lessons and practice.',primaryText:'Explore courses',primaryHref:'courses.html',secondaryText:'Watch videos',secondaryHref:'lessons.html',theme:'blue'},
+      defaultProps:{eyebrow:'LEARN FREE',title:'Understand aptitude. Prepare with confidence.',description:'Explore free lessons and practice.',primaryText:'Start learning',primaryHref:'courses.html',secondaryText:'Watch videos',secondaryHref:'lessons.html',theme:'blue'},
       render:({eyebrow,title,description,primaryText,primaryHref,secondaryText,secondaryHref,theme})=><section className={`ampv-hero ampv-theme-${['blue','white','navy'].includes(theme)?theme:'blue'}`}>
         <div className="ampv-wrap ampv-hero-grid"><div>
           <span className="ampv-eyebrow ampv-hero-kicker">{eyebrow}</span>
@@ -84,6 +85,15 @@ export const config = {
         <div className="ampv-course-grid">{courses.slice(0,count==='6'?6:3).map((course,i)=><a className="ampv-course" key={course.key} href={'/course-'+course.key+'.html'}><div className="ampv-course-art" style={{'--accent':EXAM_ACCENTS[i]}}><span>APTITUDE MIND PLUS</span><strong>{course.short||course.name}</strong><span>THINK CLEARER +</span></div><div className="ampv-course-body"><small>FREE COURSE GUIDE</small><h3>{course.title}</h3><p>{course.summary}</p><div className="ampv-course-foot">LEARNING ACCESS <b>FREE</b></div></div></a>)}</div>
       </div></section>
     },
+    QuickLinks:{
+      label:'Links to learning sections',
+      fields:{eyebrow:{type:'text'},heading:{type:'text'},description:{type:'textarea'}},
+      defaultProps:{eyebrow:'START HERE',heading:'What would you like to do today?',description:'Learn, practise, browse past papers or ask for help.'},
+      render:({eyebrow,heading,description})=>{
+        const items=[['Learn','Choose your exam and start studying','courses.html'],['Practice','Try questions we created','practice.html'],['Past Papers','Find previous exam questions','pyqs.html'],['Ask a Doubt','Send your question to our team','doubts.html'],['Tutoring','Apply for personal teacher support','tutoring.html']];
+        return <section className="ampv-section ampv-quicklinks"><div className="ampv-wrap"><Heading {...{eyebrow,heading,description}}/><div className="ampv-shortcuts">{items.map(([title,detail,href],i)=><a className="ampv-shortcut" href={'/'+href} key={href}><span>{String(i+1).padStart(2,'0')}</span><h3>{title}</h3><p>{detail}</p><small>Open →</small></a>)}</div></div></section>;
+      }
+    },
     FreeLesson:{
       label:'Featured free lesson',
       fields:{eyebrow:{type:'text'},heading:{type:'text'},description:{type:'textarea'},buttonText:{type:'text'}},
@@ -105,7 +115,7 @@ export const config = {
     TutorCTA:{
       label:'Tutoring invitation',
       fields:{eyebrow:{type:'text'},heading:{type:'text'},description:{type:'textarea'},buttonText:{type:'text'}},
-      defaultProps:{eyebrow:'NEED PERSONAL GUIDANCE?',heading:'A real teacher when you need one.',description:'Free learning is open to everyone. Optional support is available.',buttonText:'Apply for tutoring'},
+      defaultProps:{eyebrow:'OPTIONAL TEACHER SUPPORT',heading:'Need help from a teacher?',description:'Courses are free. You can apply for teacher support at ₹2,999 after we confirm class details.',buttonText:'Apply for teacher support'},
       render:({eyebrow,heading,description,buttonText})=><section className="ampv-section"><div className="ampv-wrap ampv-cta"><div><Heading {...{eyebrow,heading,description}}/></div><a className="ampv-btn ampv-btn-primary" href="/tutoring.html">{buttonText||'Enquire'}</a></div></section>
     },
     Spacer:{

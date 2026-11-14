@@ -10,23 +10,32 @@
       "type": "Hero",
       "props": {
         "id": "amp-hero-1",
-        "eyebrow": "FREE APTITUDE LEARNING FOR EVERYONE",
-        "title": "Learn at your own pace. Think with confidence.",
-        "description": "A clear home for exam aptitude. Follow a free learning path, work through concepts and lessons, and practise with explanations. Personal guidance is here when you need it.",
-        "primaryText": "Explore free courses",
+        "eyebrow": "FREE APTITUDE COURSES FOR EVERY STUDENT",
+        "title": "Learn aptitude for free. Get help when you need it.",
+        "description": "Watch lessons, understand concepts, solve practice questions and study previous exam papers. Pay only if you want a teacher to guide you.",
+        "primaryText": "Start learning",
         "primaryHref": "courses.html",
-        "secondaryText": "Try a practice question",
-        "secondaryHref": "practice.html",
+        "secondaryText": "View past papers",
+        "secondaryHref": "pyqs.html",
         "theme": "white"
+      }
+    },
+    {
+      "type": "QuickLinks",
+      "props": {
+        "id": "amp-quick-links-1",
+        "eyebrow": "YOUR STUDY OPTIONS",
+        "heading": "What would you like to do today?",
+        "description": "Choose one option. You can use all free learning materials without signing up."
       }
     },
     {
       "type": "CourseShelf",
       "props": {
         "id": "amp-courses-1",
-        "eyebrow": "START LEARNING",
-        "heading": "Choose a course. Build a strong foundation.",
-        "description": "Free, exam-focused pathways. Concepts and lessons live inside each course—not in separate competing menus.",
+        "eyebrow": "LEARN BY EXAM",
+        "heading": "Choose the exam you are preparing for.",
+        "description": "Every learning pathway is free. Start with a concept, watch a lesson and practise.",
         "count": "3"
       }
     },
@@ -34,20 +43,20 @@
       "type": "FreeLesson",
       "props": {
         "id": "amp-lesson-1",
-        "eyebrow": "A LESSON YOU CAN TRY TODAY",
-        "heading": "A small pattern. A powerful idea.",
-        "description": "Learn how the last digits of powers repeat. Then try the original eight-question quiz, with worked solutions.",
-        "buttonText": "Start the free lesson"
+        "eyebrow": "FREE PRACTICE LESSON",
+        "heading": "Learn how to find the last digit of a large power.",
+        "description": "Read the explanation, then try eight questions written by Aptitude Mind Plus.",
+        "buttonText": "Try the lesson"
       }
     },
     {
       "type": "TutorCTA",
       "props": {
         "id": "amp-support-1",
-        "eyebrow": "SUPPORT WHEN YOU NEED IT",
-        "heading": "Real teaching. Only if you need it.",
-        "description": "All free lessons and practice stay open. Optional one-to-one or small-group tutoring is available by enquiry, with scope and schedule agreed before payment.",
-        "buttonText": "Explore tutoring"
+        "eyebrow": "OPTIONAL PAID SUPPORT",
+        "heading": "Need help from a teacher?",
+        "description": "All study materials stay free. For ₹2,999, you can request personal aptitude teaching. We confirm the sessions and timings before payment.",
+        "buttonText": "Apply for teacher support"
       }
     }
   ]

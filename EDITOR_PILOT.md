@@ -30,3 +30,16 @@ Primary navigation is now **Learn · Practice · Past papers · Tutoring**. Home
 The homepage has four purposeful sections. The visual editor still allows additional optional sections. Course detail guides display the connected learning steps, then syllabus and optional tutoring. Saved-course state lives only in the visitor's browser (localStorage); there is **no account, synced progress, paid checkout or certificate service**.
 
 This is a deliberate first-party design using useful educational patterns rather than copying another platform's layout, names, ratings or proprietary graphics.
+
+
+## New student learning navigation
+
+Homepage Quick Links show Learn, Original Practice, Past Papers, Ask a Doubt and Tutoring. All lessons and resources remain free. Optional teacher support is ₹2,999 per support programme with the exact scope agreed before payment.
+
+## Student Doubts backend
+
+Doubts are sent privately to the owner and are **not** contributed exam questions. The owner can review the text under Student doubts, reply using their email app, and mark as answered. The site does not send email automatically and does not promise a fixed reply time. Before public launch, apply the incremental D1 migration at `schema/migrations/2026-11-student-doubts.sql` to the *existing* database and test with a sample doubt; never reset live data. No student contact data should appear in the public PYQ index.
+
+## Past Papers archive status
+
+`content/pyq-index.json` holds curated source metadata and APPSC 2024 Q121–150 answer references; it does not publish complete original paper text. User's Google Drive holds private archives; do not make them public or copy without reviewing rights and original papers. Individual paper excerpts require manual page-by-page provenance and copyright review before website publication.
