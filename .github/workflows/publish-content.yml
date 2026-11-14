@@ -1,0 +1,42 @@
+name: Publish edited learning content
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: amp-content-publisher
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate site from editor content
+        run: python3 build_site.py
+      - name: Validate generated page references
+        run: python3 tests/static_audit.py
+      - name: Commit updated public pages if changed
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/*.html
+          if ! git diff --staged --quiet; then
+            git commit -m 'content: publish edited learning pages [skip ci]'
+            git push origin HEAD:main
+          else
+            echo 'Generated HTML already matches the content; nothing to commit.'
+          fi

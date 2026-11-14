@@ -4,8 +4,8 @@ This is the **website only**. The Instagram/Facebook daily publisher is a separa
 
 ## Site features
 
-- Minimal blue-and-white responsive pages: Home, Concepts, Practice, PYQs, Courses, Tutoring, Submit a Question, and Admin Review.
-- Original, arithmetic-tested practice and exam categories; each standard exam-specific aptitude course is advertised at **₹3,000** (course scope, dates and payment terms need confirmation before registration).
+- Minimal blue-and-white responsive pages: Home, **Free Video Lessons**, Concepts, Practice, PYQs, Courses, Tutoring, Submit a Question, and Admin Review.
+- **Free-first model:** original explanations, free guided/video lessons, courses, PYQs and practice are available to everyone. Optional personal tutoring/doubt-solving is advertised from **₹3,000 per support programme**; the exact session scope and terms must be agreed before payment.
 - Contributors may submit text and an optional compressed photo after asserting sharing rights. Submissions remain private until admin approval; verified official PYQs require separate human verification.
 - A private admin dashboard for review, rejection, publishing, and course enquiries. A student cannot publish directly.
 - No credit-card collection, payment checkout, trackers, arbitrary external package dependencies, or invented official exam papers.
@@ -46,7 +46,7 @@ npm test
 python3 -m http.server 8000 --directory public
 ```
 
-The visual static preview runs without a database, but the forms correctly stay inactive until D1, R2 and administrator secrets are connected. To make edits, edit `build_site.py`, run `python3 build_site.py` to generate pages, and commit the generated `public/*.html` files.
+The visual static preview runs without a database, but the forms correctly stay inactive until D1, R2 and administrator secrets are connected. To make recurring content edits, use the free Pages CMS editor described below. For design/source changes, update `build_site.py` or `course_platform.py`, run `python3 build_site.py`, and commit the generated `public/*.html` files.
 
 ### Privacy, quality and security notes
 
@@ -57,3 +57,37 @@ The visual static preview runs without a database, but the forms correctly stay 
 - Keep the admin endpoint private; never expose uploaded contributor contact information to search engines.
 - Do not take payment until duration, syllabus, schedule, refund policy and service terms are clearly written and verified.
 - Treat all student personal information with care and establish real deletion/retention controls before broad launch.
+
+
+## Owner's no-code editor: Pages CMS (free)
+
+The website includes `.pages.yml` and structured data in `content/`, so you can update text, free lessons, approved public YouTube links, prices, courses, announcement banners, optional course images and the official logo **without writing code**.
+
+1. Open **https://app.pagescms.org** in a browser and sign in with the GitHub account that owns `VenkataKrishnaYalagala/aptitude-mind-plus`.
+2. Approve the Pages CMS GitHub app for **only this website repository**, not all personal repositories. Your GitHub account controls who can edit.
+3. Open `aptitude-mind-plus` in Pages CMS. The editor reads `.pages.yml` automatically.
+4. To update a headline: choose **Website settings and homepage**, change the field, then **Save**.
+5. To upload an image: open **Media**, upload the photo/logo, and choose its image field in **Website settings** or **Exam pathways**.
+6. To add a video: open **Free lessons and YouTube videos**, add a lesson row, enter title, topic, description and a **public YouTube share URL**, and set **Published** to true. The player is automatically embedded in privacy-enhanced mode **only when a visitor clicks Play**. Blank or invalid video links produce no fake player.
+7. To change exam course wording: open **Exam pathways**. Do not change the six internal exam codes. To edit the announcement strip: open **Announcement strip**.
+8. Click **Save**. Pages CMS commits the data to GitHub. The `Publish edited learning content` GitHub Action regenerates the HTML and commits it to `main`. Cloudflare Pages' Git connection deploys the updated site automatically. Check the Actions tab for failures if the edit doesn't appear.
+
+**What the visual editor does not cover:** changing the underlying layout, backend security or adding new exam categories requires a code change. The existing `public/` pages are generated files; avoid editing those directly because the next regeneration replaces them. This public CMS is for your content and official image assets, **not private student-uploaded files or admin secrets**.
+
+**If you prefer a single deployment per edit:** set Cloudflare Pages' Build command once to `python3 build_site.py` (root `/`, output `public`) and disable `publish-content.yml`; this directly renders CMS edits during the Cloudflare build. The committed-pages workflow above works with the original `exit 0` setting and needs no repeated manual build.
+
+## Free education + optional support business model
+
+- **Open access:** Free original lessons, public YouTube embeds, guided notes, carefully reviewed PYQs, concept explanations, and quizzes. No compulsory registration or payments.
+- **Personal help:** An optional ₹3,000 tutoring support programme offered through an enquiry only. Session count, duration, schedule, format, refund and cancellation terms need agreement before payment.
+- **YouTube:** The original public video remains on YouTube while its privacy-enhanced embed appears on the website. Only the *eligible YouTube video owner* and YouTube share revenue from video-player advertisements. Embedding the player does not grant the website extra video-ad revenue.
+- **Website AdSense (later):** Do not copy Google AdSense scripts to the site before obtaining approval for the final domain, publishing adequate original content and reviewing disclosures and Google policy. Once approved, add the exact publisher script and any required consent controls by a reviewed code change. **Never** pay a third-party claiming guaranteed AdSense approval. No ads are active in this codebase.
+- **Google Business Profile:** Helps eligible tutoring businesses become discoverable on Search and Maps, but it is not a direct ad-revenue product. Verify eligibility before creating a listing.
+- **Payments:** No checkout is active. A payment provider will require additional eligibility, fee, compliance, refund and privacy work. Do not store card data in D1, R2 or Google Drive.
+- **Google Drive:** Use your existing private 5 TB archive for master notes and working materials; **do not** expose private Google Drive files publicly or use them as the anonymous upload backend.
+
+The site's small public course images are saved with GitHub through Pages CMS. Student-uploaded images remain in private Cloudflare R2 behind moderation checks. Do not mix the two storage types.
+
+## Admin and launch checks before taking real applications
+
+Set up and test D1, R2, bindings `DB` / `UPLOADS`, and secrets `ADMIN_PASSWORD` / `SESSION_SECRET`; the public front end can be visited before this, but submissions stay disabled. Add Cloudflare Turnstile anti-bot protection, contact details, a privacy and deletion policy, and verified copyright permissions. Obtain the owner-supplied official logo before branding signoff. Provide captioned videos and descriptive lesson notes for accessibility and search visibility. YouTube videos can be edited and re-uploaded via the YouTube owner account, not the website CMS itself.

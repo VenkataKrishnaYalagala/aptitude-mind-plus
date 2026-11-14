@@ -1,0 +1,332 @@
+[
+  {
+    "key": "upsc",
+    "name": "UPSC CSAT",
+    "short": "CSAT",
+    "symbol": "02",
+    "title": "UPSC CSAT: Aptitude, Reasoning & Comprehension",
+    "summary": "Strengthen the quantitative, logical and comprehension skills needed to approach CSAT questions with confidence.",
+    "focus": [
+      "Quantitative aptitude",
+      "Logical reasoning",
+      "Comprehension"
+    ],
+    "level": "Foundation to exam practice",
+    "outcomes": [
+      "Translate arithmetic word problems into a clear method.",
+      "Spot patterns and test logical conclusions carefully.",
+      "Read passages and distinguish evidence from assumptions.",
+      "Review CSAT-style questions with step-by-step reasoning."
+    ],
+    "modules": [
+      {
+        "heading": "Numbers and arithmetic",
+        "topics": [
+          "Number systems and divisibility",
+          "Percentages, ratios and proportions",
+          "Averages and arithmetic applications"
+        ]
+      },
+      {
+        "heading": "Applied quantitative aptitude",
+        "topics": [
+          "Time, speed and distance",
+          "Time and work",
+          "Data interpretation and problem selection"
+        ]
+      },
+      {
+        "heading": "Reasoning and comprehension",
+        "topics": [
+          "Logical reasoning and analytical thinking",
+          "Reading comprehension practice",
+          "Statements, assumptions and conclusions"
+        ]
+      },
+      {
+        "heading": "Exam-oriented practice",
+        "topics": [
+          "Mixed aptitude question sets",
+          "Approach and time management",
+          "Error analysis and revision plan"
+        ]
+      }
+    ],
+    "cover_image": ""
+  },
+  {
+    "key": "gate",
+    "name": "GATE General Aptitude",
+    "short": "GATE",
+    "symbol": "GA",
+    "title": "GATE General Aptitude: Quantitative & Verbal",
+    "summary": "Build accuracy in the general aptitude component of GATE, with concise verbal, quantitative and reasoning practice.",
+    "focus": [
+      "Quantitative aptitude",
+      "Verbal ability",
+      "Reasoning"
+    ],
+    "level": "Foundation to exam practice",
+    "outcomes": [
+      "Solve core quantitative problems using precise reasoning.",
+      "Understand verbal and reading-comprehension questions.",
+      "Interpret tables, ratios, comparisons and data clearly.",
+      "Practise short exam-style problems with worked methods."
+    ],
+    "modules": [
+      {
+        "heading": "Quantitative foundations",
+        "topics": [
+          "Numbers, ratios and percentages",
+          "Averages and numerical reasoning",
+          "Basic probability and counting ideas"
+        ]
+      },
+      {
+        "heading": "Data and logical ability",
+        "topics": [
+          "Tables and charts",
+          "Patterns and sequences",
+          "Analytical and spatial reasoning"
+        ]
+      },
+      {
+        "heading": "Verbal aptitude",
+        "topics": [
+          "Grammar and sentence meaning",
+          "Vocabulary in context",
+          "Short reading passages"
+        ]
+      },
+      {
+        "heading": "Exam-oriented practice",
+        "topics": [
+          "Mixed general aptitude problems",
+          "Answer checking and explanations",
+          "Strategies for efficient revision"
+        ]
+      }
+    ],
+    "cover_image": ""
+  },
+  {
+    "key": "ssc",
+    "name": "SSC Aptitude",
+    "short": "SSC",
+    "symbol": "01",
+    "title": "SSC: Quantitative Aptitude & Reasoning",
+    "summary": "Build a dependable command of arithmetic, number patterns and reasoning, then practise efficient approaches.",
+    "focus": [
+      "Quantitative aptitude",
+      "Reasoning",
+      "Exam strategy"
+    ],
+    "level": "Foundation to exam practice",
+    "outcomes": [
+      "Solve everyday arithmetic and number-system problems.",
+      "Recognise common reasoning and series patterns.",
+      "Apply a method before optimizing for speed.",
+      "Diagnose recurring errors through explained practice."
+    ],
+    "modules": [
+      {
+        "heading": "Numerical ability",
+        "topics": [
+          "Numbers, factors and divisibility",
+          "Fractions, decimals and percentages",
+          "Ratio, proportion and averages"
+        ]
+      },
+      {
+        "heading": "Applied arithmetic",
+        "topics": [
+          "Profit, loss and simple interest",
+          "Time and work",
+          "Speed, distance and mixtures"
+        ]
+      },
+      {
+        "heading": "General reasoning",
+        "topics": [
+          "Number and letter series",
+          "Analogies and classification",
+          "Basic logical and spatial reasoning"
+        ]
+      },
+      {
+        "heading": "Exam-oriented practice",
+        "topics": [
+          "Topic-wise problem sets",
+          "Efficient solution methods",
+          "Mixed practice and review"
+        ]
+      }
+    ],
+    "cover_image": ""
+  },
+  {
+    "key": "bank",
+    "name": "Banking Aptitude",
+    "short": "BANKING",
+    "symbol": "%",
+    "title": "Banking Exams: Numerical Ability & Reasoning",
+    "summary": "Learn numerical ability, data interpretation and logical reasoning patterns used in banking aptitude preparation.",
+    "focus": [
+      "Data interpretation",
+      "Quantitative aptitude",
+      "Reasoning"
+    ],
+    "level": "Foundation to exam practice",
+    "outcomes": [
+      "Interpret data charts and arithmetic relationships.",
+      "Work accurately with simplification and number series.",
+      "Organize information in logical puzzles methodically.",
+      "Review problem sets to improve accuracy and consistency."
+    ],
+    "modules": [
+      {
+        "heading": "Numerical foundations",
+        "topics": [
+          "Simplification and approximation",
+          "Number series",
+          "Percentages, ratios and averages"
+        ]
+      },
+      {
+        "heading": "Applied arithmetic",
+        "topics": [
+          "Time and work",
+          "Interest and profit-loss",
+          "Time, speed and distance"
+        ]
+      },
+      {
+        "heading": "Data interpretation",
+        "topics": [
+          "Tables, graphs and caselets",
+          "Comparing quantities",
+          "Data sufficiency ideas"
+        ]
+      },
+      {
+        "heading": "Logical reasoning",
+        "topics": [
+          "Seating and arrangement ideas",
+          "Coding, patterns and inequalities",
+          "Mixed aptitude practice"
+        ]
+      }
+    ],
+    "cover_image": ""
+  },
+  {
+    "key": "state",
+    "name": "APPSC / TGPSC",
+    "short": "STATE EXAMS",
+    "symbol": "AP",
+    "title": "APPSC & TGPSC: Mental Ability & Aptitude",
+    "summary": "Prepare the arithmetic and reasoning foundations used across state-level competitive-examination aptitude sections.",
+    "focus": [
+      "Mental ability",
+      "Quantitative aptitude",
+      "Reasoning"
+    ],
+    "level": "Foundation to exam practice",
+    "outcomes": [
+      "Handle foundational arithmetic accurately.",
+      "Use structured reasoning to assess patterns and statements.",
+      "Translate charts and tables into clear conclusions.",
+      "Develop topic-wise revision through guided practice."
+    ],
+    "modules": [
+      {
+        "heading": "Numbers and arithmetic",
+        "topics": [
+          "Number systems and operations",
+          "Percentages and averages",
+          "Ratios, interest and applications"
+        ]
+      },
+      {
+        "heading": "Reasoning foundations",
+        "topics": [
+          "Classification and analogies",
+          "Series, coding and relationships",
+          "Analytical problem-solving"
+        ]
+      },
+      {
+        "heading": "Data and interpretation",
+        "topics": [
+          "Tables and basic graphs",
+          "Quantitative comparisons",
+          "Reasoned answer selection"
+        ]
+      },
+      {
+        "heading": "Practice and revision",
+        "topics": [
+          "Topic-wise exercises",
+          "Carefully reviewed previous-paper material where licensed",
+          "Explanation-led revision"
+        ]
+      }
+    ],
+    "cover_image": ""
+  },
+  {
+    "key": "rail",
+    "name": "Railways Aptitude",
+    "short": "RAILWAYS",
+    "symbol": "R",
+    "title": "Railways: Mathematics & General Reasoning",
+    "summary": "Build a practical base in quantitative aptitude and reasoning for railway recruitment-exam preparation.",
+    "focus": [
+      "Numerical ability",
+      "Reasoning",
+      "Exam strategy"
+    ],
+    "level": "Foundation to exam practice",
+    "outcomes": [
+      "Strengthen calculation and arithmetic fundamentals.",
+      "Approach time-work and speed-distance problems confidently.",
+      "Solve pattern and classification questions systematically.",
+      "Review mixed aptitude exercises with explanations."
+    ],
+    "modules": [
+      {
+        "heading": "Arithmetic essentials",
+        "topics": [
+          "Number systems and decimals",
+          "HCF, LCM and divisibility",
+          "Fractions and percentages"
+        ]
+      },
+      {
+        "heading": "Applied mathematics",
+        "topics": [
+          "Ratios, proportions and averages",
+          "Time and work",
+          "Speed, distance and simple interest"
+        ]
+      },
+      {
+        "heading": "Reasoning skills",
+        "topics": [
+          "Series and pattern recognition",
+          "Analogies, coding and classification",
+          "Logical problem-solving"
+        ]
+      },
+      {
+        "heading": "Revision and practice",
+        "topics": [
+          "Topic-based problem sets",
+          "Method selection and checking",
+          "Mixed aptitude review"
+        ]
+      }
+    ],
+    "cover_image": ""
+  }
+]

@@ -1,0 +1,131 @@
+# Pages CMS: sign in at https://app.pagescms.org with your GitHub account.
+# Public learning content belongs in GitHub, never API credentials or student records.
+media:
+  input: public/media
+  output: /media
+  extensions: [png, jpg, jpeg, webp, svg]
+  rename: safe
+content:
+  - name: site
+    label: Website settings and homepage
+    type: file
+    path: content/site.json
+    format: json
+    fields:
+      - name: hero_kicker
+        label: Small headline
+        type: string
+      - name: hero_title
+        label: Main headline
+        type: string
+      - name: hero_description
+        label: Homepage introduction
+        type: text
+      - name: support_price
+        label: Tutoring programme price (INR)
+        type: number
+        options:
+          min: 0
+      - name: support_description
+        label: Tutoring description
+        type: text
+      - name: youtube_channel_url
+        label: YouTube channel address
+        type: string
+      - name: contact_email
+        label: Public contact email (optional)
+        type: string
+      - name: logo_path
+        label: Official brand logo (optional)
+        type: image
+  - name: courses
+    label: Exam pathways
+    type: file
+    path: content/courses.json
+    format: json
+    list: true
+    fields:
+      - name: key
+        label: Exam code (do not change after publishing)
+        type: select
+        options:
+          values: [upsc, gate, ssc, bank, state, rail]
+      - name: name
+        type: string
+      - name: short
+        type: string
+      - name: symbol
+        type: string
+      - name: title
+        type: string
+      - name: summary
+        type: text
+      - name: level
+        type: string
+      - name: cover_image
+        label: Optional cover image
+        type: image
+      - name: focus
+        type: string
+        list: true
+      - name: outcomes
+        type: string
+        list: true
+      - name: modules
+        type: object
+        list: true
+        fields:
+          - name: heading
+            type: string
+          - name: topics
+            type: string
+            list: true
+  - name: lessons
+    label: Free lessons and YouTube videos
+    type: file
+    path: content/lessons.json
+    format: json
+    list: true
+    fields:
+      - name: slug
+        label: Unique lesson identifier
+        type: string
+        pattern: "^[a-z0-9-]+$"
+      - name: title
+        type: string
+      - name: summary
+        type: text
+      - name: exam
+        type: select
+        options:
+          values: [all, upsc, gate, ssc, bank, state, rail]
+      - name: topic
+        type: string
+      - name: notes
+        label: Lesson notes shown below the video
+        type: text
+      - name: youtube_url
+        label: Public YouTube video URL (optional)
+        type: string
+      - name: cover_image
+        label: Optional thumbnail image
+        type: image
+      - name: link
+        label: Optional local lesson URL
+        type: string
+      - name: published
+        type: boolean
+  - name: updates
+    label: Announcement strip
+    type: file
+    path: content/updates.json
+    format: json
+    list: true
+    fields:
+      - name: title
+        type: string
+      - name: url
+        label: Link to an internal page
+        type: string
+      - name: published
+        type: boolean

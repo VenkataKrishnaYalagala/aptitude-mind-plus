@@ -5,7 +5,7 @@ from urllib.parse import urlsplit, unquote
 
 root = Path(__file__).resolve().parent.parent / 'public'
 known = sorted(root.glob('*.html'))
-assert len(known) == 10, f'Expected 10 pages, got {len(known)}'
+assert len(known) == 17, f'Expected 16 pages, got {len(known)}'
 
 class References(HTMLParser):
     def __init__(self):
@@ -40,6 +40,15 @@ for page in known:
         assert candidate.is_relative_to(root.resolve()), f'Unsafe relative path in {page.name}: {path}'
         assert candidate.exists(), f'Broken local reference in {page.name}: {path}'
 assert 'rights' in (root/'submit.html').read_text()
-assert '₹3,000' in (root/'courses.html').read_text()
+assert 'LEARNING ACCESS' in (root/'courses.html').read_text()
+assert 'FREE' in (root/'courses.html').read_text()
+assert '₹3,000' in (root/'tutoring.html').read_text()
+assert 'Free Video Lessons' in (root/'lessons.html').read_text()
 assert 'admin' in (root/'admin.html').read_text()
 print(f'PASS: {len(known)} HTML pages, page titles, image alt text, and all local links')
+
+for exam in ('upsc','gate','ssc','bank','state','rail'):
+    html=(root/f'course-{exam}.html').read_text(encoding='utf8')
+    assert 'Course Guide' in html or 'COURSE GUIDE' in html
+    assert 'SELF-PACED LEARNING' in html and 'FREE' in html
+    assert 'tutoring.html?course=' in html

@@ -1,0 +1,26 @@
+[
+  {
+    "slug": "units-digit-cyclicity",
+    "title": "Units digit and cyclicity",
+    "summary": "See why powers repeat in short cycles, then try an original eight-question quiz.",
+    "exam": "all",
+    "topic": "Number systems",
+    "youtube_url": "",
+    "cover_image": "",
+    "link": "practice.html#lesson",
+    "published": true,
+    "notes": "The last digits of powers of 7 follow a four-step cycle: 7, 9, 3, 1. To find the units digit of 7^2026, divide 2026 by 4. The remainder is 2, so use the second digit in the cycle: 9. This works because multiplying by 7 advances the repeating units-digit pattern."
+  },
+  {
+    "slug": "percentages-foundations",
+    "title": "Percentages from first principles",
+    "summary": "A planned free mathematics video lesson. Add the YouTube link once published.",
+    "exam": "all",
+    "topic": "Arithmetic",
+    "youtube_url": "",
+    "cover_image": "",
+    "link": "",
+    "published": false,
+    "notes": ""
+  }
+]
