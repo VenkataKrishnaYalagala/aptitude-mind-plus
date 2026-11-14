@@ -217,3 +217,8 @@
 .video-notes{border-top:1px solid #edf1f7;margin-top:-7px;margin-bottom:10px;padding-top:12px;font-size:12px;color:#344866}
 .video-notes summary{cursor:pointer;color:#2853ca;font-weight:750}
 .video-notes p{white-space:pre-line;line-height:1.7;margin:9px 0}
+
+/* Site-wide owner-selectable typography; no third-party font downloads. */
+body[data-font="modern"]{font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif}
+body[data-font="readable"]{font-family:Verdana,"Segoe UI",sans-serif}
+body[data-font="editorial"]{font-family:Georgia,"Times New Roman",serif}
