@@ -49,3 +49,7 @@
 .ampv-spacer-small{height:16px}.ampv-spacer-medium{height:48px}.ampv-spacer-large{height:90px}
 @media(max-width:880px){.ampv-hero-grid,.ampv-media-row{grid-template-columns:1fr;gap:26px}.ampv-hero{padding:55px 0}.ampv-art-card{min-height:250px}.ampv-course-grid,.ampv-exam-grid{grid-template-columns:repeat(2,1fr)}.ampv-cta{padding:34px}}
 @media(max-width:540px){.ampv-wrap{width:min(100% - 32px,1160px)}.ampv-exam-grid,.ampv-course-grid{grid-template-columns:1fr}.ampv-section{padding:60px 0}.ampv-hero h1{font-size:40px}.ampv-cta{flex-direction:column;align-items:flex-start}.ampv-art-card{min-height:230px}}
+
+.ampv-cta > div:last-child{display:flex;flex-direction:column;align-items:center;gap:10px;flex:0 0 auto}
+.ampv-cta-price{font-size:12px;color:#6d7991;white-space:nowrap}
+@media(max-width:540px){.ampv-cta > div:last-child{align-items:flex-start}}
