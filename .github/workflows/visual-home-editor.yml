@@ -7,11 +7,15 @@ on:
       - 'visual-editor/**'
       - 'content/homepage.visual.json'
       - 'visual_home.py'
+      - 'course_platform.py'
+      - 'public/assets/style.css'
+      - 'public/assets/catalog.js'
       - 'build_site.py'
       - 'public/assets/visual-home.css'
       - 'functions/api/editor/**'
       - 'tests/visual-editor.test.mjs'
       - 'tests/visual-homepage.test.py'
+      - 'tests/static_audit.py'
       - '.github/workflows/visual-home-editor.yml'
   workflow_dispatch:
 

@@ -18,6 +18,7 @@ BLOCKS = {
     'Hero': {'eyebrow': 100, 'title': 220, 'description': 1400, 'primaryText': 90, 'primaryHref': 90, 'secondaryText': 90, 'secondaryHref': 90, 'theme': 16},
     'ExamPaths': {'eyebrow': 100, 'heading': 220, 'description': 1400},
     'CourseShelf': {'eyebrow': 100, 'heading': 220, 'description': 1400, 'count': 3},
+    'FreeLesson': {'eyebrow': 100, 'heading': 220, 'description': 1400, 'buttonText': 90},
     'TextSection': {'eyebrow': 100, 'heading': 220, 'body': 2500, 'align': 10},
     'ImageSection': {'eyebrow': 100, 'heading': 220, 'body': 1200, 'src': 320, 'alt': 220},
     'TutorCTA': {'eyebrow': 100, 'heading': 220, 'description': 1400, 'buttonText': 90},
@@ -109,6 +110,11 @@ def render_item(item):
               <div class="ampv-course-body"><small>FREE COURSE GUIDE</small><h3>{e(course['title'])}</h3><p>{e(course['summary'])}</p><div class="ampv-course-foot">LEARNING ACCESS <b>FREE</b></div></div>
             </a>''')
         return f'<section class="ampv-section ampv-soft"><div class="ampv-wrap">{wrap_header(p.get("eyebrow",""),p.get("heading",""),p.get("description",""))}<div class="ampv-course-grid">{"".join(cards)}</div></div></section>'
+    if kind=='FreeLesson':
+        return f'''<section class="ampv-section ampv-lesson-feature"><div class="ampv-wrap ampv-feature-grid">
+          <div>{wrap_header(p.get('eyebrow',''),p.get('heading',''),p.get('description',''))}<a class="ampv-btn ampv-btn-primary" href="practice.html#lesson">{get('buttonText','Try the lesson')}</a><p class="ampv-feature-note">No account required &middot; Worked explanations included</p></div>
+          <div class="ampv-example" aria-label="Example: units digit of seven to the power of 2026"><span>NUMBER PATTERNS</span><div>7<sup>2026</sup><span>&rarr;</span><strong>9</strong></div><p>Understand why, not just what.</p></div>
+        </div></section>'''
     if kind=='TextSection':
         return f'<section class="ampv-section"><div class="ampv-wrap">{wrap_header(p.get("eyebrow",""),p.get("heading",""),p.get("body",""),p.get("align","left"))}</div></section>'
     if kind=='ImageSection':

@@ -5,7 +5,7 @@ This branch introduces a **preview-only visual homepage editor** so the website 
 ## Scope
 
 - React 19 + Puck 0.24 drag-and-drop builder (`visual-editor/`)
-- 7 approved components: hero, exam links, course shelf, text, image, tutoring CTA and spacer
+- 8 approved components: hero, course shelf, featured free lesson, exam links, text, image, tutoring CTA and spacer
 - Desktop/tablet/mobile previews, local autosaved drafts and JSON export
 - Strict JSON schema validation in Cloudflare Function and Python static renderer
 - Protected publish endpoint authenticated by the existing admin session, using a repository-scoped GitHub token stored as an encrypted Cloudflare secret
@@ -13,8 +13,8 @@ This branch introduces a **preview-only visual homepage editor** so the website 
 
 ## Safety gates before production
 
-- [ ] Verify Puck dependencies compile via GitHub Actions
-- [ ] Check desktop and mobile editor interactions in an actual browser
+- [x] Verify Puck dependencies compile via GitHub Actions
+- [ ] Check drag-and-drop editor interactions in an authenticated browser (static homepage desktop, tablet and mobile tests passed)
 - [ ] Confirm Cloudflare Pages preview project correctly serves `/visual-editor/`
 - [ ] Configure Cloudflare Access and verify unauthorized users cannot publish
 - [ ] Test save-to-GitHub, generated HTML, and deployment end to end with a harmless edit
@@ -22,3 +22,11 @@ This branch introduces a **preview-only visual homepage editor** so the website 
 - [ ] Decide whether to add image upload and additional pages
 
 Production remains on the existing Pages CMS until these gates are completed. The daily social automation project is unaffected.
+
+## Clear navigation, international readability (new)
+
+Primary navigation is now **Learn · Practice · Past papers · Tutoring**. Home is accessible from the official logo. The Learn catalog is the entry point for all exam-specific course guides and links to concepts and video lessons. Existing concept and video URLs remain valid for search engines, bookmarks, and older social posts, but no longer compete at the top navigation level.
+
+The homepage has four purposeful sections. The visual editor still allows additional optional sections. Course detail guides display the connected learning steps, then syllabus and optional tutoring. Saved-course state lives only in the visitor's browser (localStorage); there is **no account, synced progress, paid checkout or certificate service**.
+
+This is a deliberate first-party design using useful educational patterns rather than copying another platform's layout, names, ratings or proprietary graphics.

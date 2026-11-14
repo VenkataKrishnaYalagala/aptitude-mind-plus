@@ -4,6 +4,7 @@ const SPECS={
  Hero:{eyebrow:100,title:220,description:1400,primaryText:90,primaryHref:90,secondaryText:90,secondaryHref:90,theme:16},
  ExamPaths:{eyebrow:100,heading:220,description:1400},
  CourseShelf:{eyebrow:100,heading:220,description:1400,count:3},
+ FreeLesson:{eyebrow:100,heading:220,description:1400,buttonText:90},
  TextSection:{eyebrow:100,heading:220,body:2500,align:10},
  ImageSection:{eyebrow:100,heading:220,body:1200,src:320,alt:220},
  TutorCTA:{eyebrow:100,heading:220,description:1400,buttonText:90},

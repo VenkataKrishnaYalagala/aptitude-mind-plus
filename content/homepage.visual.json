@@ -1,7 +1,7 @@
 {
   "root": {
     "props": {
-      "title": "Aptitude Mind Plus | Free Aptitude Learning",
+      "title": "Free Aptitude Learning",
       "fontStyle": "system"
     }
   },
@@ -10,53 +10,44 @@
       "type": "Hero",
       "props": {
         "id": "amp-hero-1",
-        "eyebrow": "ALL IN ONE FOR APTITUDE & QWUANT",
-        "title": "Understand aptitude. Prepare with confidence.",
-        "description": "Learn concepts, watch free lessons, practise original questions, and explore verified previous papers. Pay only when you want personal support.",
+        "eyebrow": "FREE APTITUDE LEARNING FOR EVERYONE",
+        "title": "Learn at your own pace. Think with confidence.",
+        "description": "A clear home for exam aptitude. Follow a free learning path, work through concepts and lessons, and practise with explanations. Personal guidance is here when you need it.",
         "primaryText": "Explore free courses",
         "primaryHref": "courses.html",
-        "secondaryText": "Watch video lessons",
-        "secondaryHref": "lessons.html",
-        "theme": "blue"
-      }
-    },
-    {
-      "type": "ExamPaths",
-      "props": {
-        "id": "amp-exams-1",
-        "eyebrow": "YOUR EXAM, YOUR PATHWAY",
-        "heading": "Which exam are you preparing for?",
-        "description": "One foundation, with different routes for UPSC CSAT, GATE, SSC, Banking, state examinations and Railways."
+        "secondaryText": "Try a practice question",
+        "secondaryHref": "practice.html",
+        "theme": "white"
       }
     },
     {
       "type": "CourseShelf",
       "props": {
         "id": "amp-courses-1",
-        "eyebrow": "OPEN CLASSROOM",
-        "heading": "Explore exam-focused learning.",
-        "description": "Free course guides and concepts. Learn independently at your own pace.",
+        "eyebrow": "START LEARNING",
+        "heading": "Choose a course. Build a strong foundation.",
+        "description": "Free, exam-focused pathways. Concepts and lessons live inside each course—not in separate competing menus.",
         "count": "3"
       }
     },
     {
-      "type": "TextSection",
+      "type": "FreeLesson",
       "props": {
-        "id": "amp-story-1",
-        "eyebrow": "HOW LEARNING WORKS",
-        "heading": "Learn freely. Practise deliberately.",
-        "body": "Start with a clear concept, watch the lesson on YouTube directly from this website, then solve original practice problems and review your reasoning.",
-        "align": "center"
+        "id": "amp-lesson-1",
+        "eyebrow": "A LESSON YOU CAN TRY TODAY",
+        "heading": "A small pattern. A powerful idea.",
+        "description": "Learn how the last digits of powers repeat. Then try the original eight-question quiz, with worked solutions.",
+        "buttonText": "Start the free lesson"
       }
     },
     {
       "type": "TutorCTA",
       "props": {
         "id": "amp-support-1",
-        "eyebrow": "NEED PERSONAL HELP?",
-        "heading": "A real teacher when you need one.",
-        "description": "Our lessons and practice remain free. Students who want individual guidance can apply for a tutoring support programme; scope and schedule are agreed before payment.",
-        "buttonText": "Ask about tutoring"
+        "eyebrow": "SUPPORT WHEN YOU NEED IT",
+        "heading": "Real teaching. Only if you need it.",
+        "description": "All free lessons and practice stay open. Optional one-to-one or small-group tutoring is available by enquiry, with scope and schedule agreed before payment.",
+        "buttonText": "Explore tutoring"
       }
     }
   ]

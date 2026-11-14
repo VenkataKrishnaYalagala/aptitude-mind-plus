@@ -9,16 +9,15 @@ from visual_home import validate_layout, render_home, render_item
 ROOT=Path(__file__).resolve().parent.parent
 seed=json.loads((ROOT/'content/homepage.visual.json').read_text(encoding='utf8'))
 validate_layout(seed)
-assert len(seed['content'])>=4
+assert len(seed['content'])==4
 assert all(render_item(item) for item in seed['content'])
 assert '<a' in render_item(seed['content'][0])
-assert 'FREE' in render_item(seed['content'][2])
+assert 'FREE' in render_item(seed['content'][1])
+assert 'practice.html#lesson' in render_item(seed['content'][2])
 assert 'tutoring.html' in render_item(seed['content'][-1])
 with tempfile.TemporaryDirectory() as directory:
     tmp=Path(directory)/'home.json'
-    for item in seed['content']:
-        if item['type']=='TextSection':
-            item['props']['heading']='<script>alert(1)</script>'
+    seed['content'].append({'type':'TextSection','props':{'id':'test-escape','heading':'<script>alert(1)</script>','body':'A note','align':'left'}})
     tmp.write_text(json.dumps(seed),encoding='utf8')
     page=render_home(lambda page,title,description,body: body,tmp)
     assert '<script>alert(1)</script>' not in page

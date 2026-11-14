@@ -27,7 +27,7 @@ function Heading({eyebrow,heading,description,align='left'}) {
 
 export const config = {
   categories: {
-    essentials: {title: 'Main page sections', components: ['Hero','ExamPaths','CourseShelf','TextSection','TutorCTA']},
+    essentials: {title: 'Main page sections', components: ['Hero','CourseShelf','FreeLesson','TutorCTA','ExamPaths','TextSection']},
     extras: {title: 'Images and spacing', components: ['ImageSection','Spacer']}
   },
   root: {
@@ -83,6 +83,12 @@ export const config = {
       render:({eyebrow,heading,description,count})=><section className="ampv-section ampv-soft"><div className="ampv-wrap"><Heading {...{eyebrow,heading,description}}/>
         <div className="ampv-course-grid">{courses.slice(0,count==='6'?6:3).map((course,i)=><a className="ampv-course" key={course.key} href={'/course-'+course.key+'.html'}><div className="ampv-course-art" style={{'--accent':EXAM_ACCENTS[i]}}><span>APTITUDE MIND PLUS</span><strong>{course.short||course.name}</strong><span>THINK CLEARER +</span></div><div className="ampv-course-body"><small>FREE COURSE GUIDE</small><h3>{course.title}</h3><p>{course.summary}</p><div className="ampv-course-foot">LEARNING ACCESS <b>FREE</b></div></div></a>)}</div>
       </div></section>
+    },
+    FreeLesson:{
+      label:'Featured free lesson',
+      fields:{eyebrow:{type:'text'},heading:{type:'text'},description:{type:'textarea'},buttonText:{type:'text'}},
+      defaultProps:{eyebrow:'TRY A FREE LESSON',heading:'Learn why powers repeat.',description:'A real worked example and an eight-question practice quiz.',buttonText:'Start free lesson'},
+      render:({eyebrow,heading,description,buttonText})=><section className="ampv-section ampv-lesson-feature"><div className="ampv-wrap ampv-feature-grid"><div><Heading {...{eyebrow,heading,description}}/><a className="ampv-btn ampv-btn-primary" href="/practice.html#lesson">{buttonText||'Start free lesson'}</a><p className="ampv-feature-note">No account required · Worked explanations included</p></div><div className="ampv-example"><span>NUMBER PATTERNS</span><div>7<sup>2026</sup><span>→</span><strong>9</strong></div><p>Understand why, not just what.</p></div></div></section>
     },
     TextSection:{
       label:'Heading and paragraph',

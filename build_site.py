@@ -31,17 +31,14 @@ TOPICS=[
 ]
 
 def shell(page,title,description,body):
-    menu=[('Home','index.html'),('Courses','courses.html'),('Video Lessons','lessons.html'),('Concepts','concepts.html'),('Practice','practice.html'),('PYQ Library','pyqs.html'),('Tutoring','tutoring.html')]
-    nav=''.join(f'<a class="nav-link {"active" if page==href else ""}" href="{href}" {"aria-current=page" if page==href else ""}>{label}</a>' for label,href in menu)
+    menu=[('Learn','courses.html'),('Practice','practice.html'),('Past papers','pyqs.html'),('Tutoring','tutoring.html')]
+    nav=''.join(f'<a class="nav-link {"active" if (page==href or (href=='courses.html' and page in ('concepts.html','lessons.html'))) else ""}" href="{href}" {"aria-current=page" if (page==href or (href=='courses.html' and page in ('concepts.html','lessons.html'))) else ""}>{label}</a>' for label,href in menu)
     updates=json.loads((Path(__file__).parent/'content/updates.json').read_text(encoding='utf-8'))
     def safe_update_link(link):
         return link if isinstance(link,str) and re.fullmatch(r'[a-z-]+\.html(?:#[a-z-]+)?',link) else 'lessons.html'
     ann_html=''.join(f'<a class="announcement-item {"current" if i==0 else ""}" href="{safe_update_link(x.get("url",""))}">{escape(x.get("title",""))} <span aria-hidden="true">↗</span></a>' for i,x in enumerate([u for u in updates if u.get('published') and u.get('title')][:5]))
     if not ann_html:ann_html='<a class="announcement-item current" href="lessons.html">Browse free aptitude lessons ↗</a>'
     logo=safe_image(SITE.get('logo_path','')) or 'assets/brand.svg'
-    font_choice = SITE.get('font_style', 'system')
-    if font_choice not in ('system', 'modern', 'readable', 'editorial'):
-        font_choice = 'system'
     contact=SITE.get('contact_email','')
     email_link=f'<a href="mailto:{escape(contact,quote=True)}">Email the team</a>' if re.fullmatch(r'[a-zA-Z0-9_.+%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}',str(contact)) else ''
     channel=SITE.get('youtube_channel_url','')
@@ -51,19 +48,19 @@ def shell(page,title,description,body):
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#f9fbff"><meta name="description" content="{escape(description,quote=True)}">
 <meta property="og:title" content="{escape(title,quote=True)}"><meta property="og:description" content="{escape(description,quote=True)}">
-<meta property="og:type" content="website"><meta name="color-scheme" content="light">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Aptitude Mind Plus"><meta name="color-scheme" content="light">
 <title>{escape(title)} | Aptitude Mind Plus</title>
 <link rel="icon" href="{logo}"><link rel="stylesheet" href="assets/style.css"><link rel="stylesheet" href="assets/visual-home.css">
 <script src="assets/config.js" defer></script><script src="assets/app.js" defer></script><script src="assets/catalog.js" defer></script><script src="assets/videos.js" defer></script>
-</head><body data-page="{page}" data-font="{font_choice}">
+</head><body data-page="{page}">
 <a class="skip-link" href="#main">Skip to main content</a>
 <div class="announcement" role="region" aria-label="Learning announcements"><div class="announcement-inner"><span class="announcement-prefix">AMP / NOW</span><div class="announcements" id="announcements" aria-live="off">{ann_html}</div><div class="announcement-controls"><button type="button" aria-label="Previous announcement" data-ann-prev>‹</button><button type="button" aria-label="Next announcement" data-ann-next>›</button></div></div></div>
 <header class="header"><div class="wrap header-inner">
 <a href="index.html" class="identity" aria-label="Aptitude Mind Plus home"><img src="{logo}" alt="" width="40" height="40"><span><strong>Aptitude Mind Plus</strong><small>Learning, made clear.</small></span></a>
-<nav class="desktop-nav" aria-label="Primary navigation">{nav}</nav><a class="header-cta" href="courses.html">Browse courses <span aria-hidden="true">↗</span></a><button class="menu-trigger" type="button" data-menu-trigger aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
-</div><nav id="mobile-navigation" class="mobile-nav" data-mobile-nav aria-label="Mobile navigation">{nav}<a href="submit.html" class="mobile-contribute">Submit a question ↗</a></nav></header>
+<nav class="desktop-nav" aria-label="Primary navigation">{nav}</nav><a class="header-cta" href="courses.html#browse-courses">Browse free courses <span aria-hidden="true">↗</span></a><button class="menu-trigger" type="button" data-menu-trigger aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
+</div><nav id="mobile-navigation" class="mobile-nav" data-mobile-nav aria-label="Mobile navigation">{nav}<a href="lessons.html" class="mobile-contribute">Free lesson library ↗</a><a href="submit.html" class="mobile-contribute">Submit a question ↗</a></nav></header>
 <main id="main">{body}</main>
-<footer class="footer"><div class="wrap"><div class="footer-main"><div class="footer-brand"><a class="identity" href="index.html"><img src="{logo}" alt="" width="38" height="38"><span><strong>Aptitude Mind Plus</strong><small>Learning, made clear.</small></span></a><p>Clear concepts. Original practice. Thoughtfully reviewed exam questions.</p></div><div class="footer-links"><div><strong>Explore</strong><a href="concepts.html">Concept library</a><a href="practice.html">Practice</a><a href="pyqs.html">PYQ library</a><a href="lessons.html">Free video lessons</a></div><div><strong>Learn with us</strong><a href="courses.html">Courses</a><a href="tutoring.html">Tutoring</a><a href="submit.html">Contribute a question</a></div><div><strong>About</strong><a href="privacy.html">Privacy & contributions</a><a href="admin.html" rel="nofollow">Reviewer sign in</a>{channel_link}{email_link}<a data-external="youtubeUrl" hidden>Watch on YouTube</a><a data-external="instagramUrl" hidden>Instagram</a></div></div></div><div class="footer-bottom"><span>© <span data-year>2026</span> Aptitude Mind Plus</span><span>Made for curious minds. Built for every exam.</span></div></div></footer>
+<footer class="footer"><div class="wrap"><div class="footer-main"><div class="footer-brand"><a class="identity" href="index.html"><img src="{logo}" alt="" width="38" height="38"><span><strong>Aptitude Mind Plus</strong><small>Learning, made clear.</small></span></a><p>Clear concepts. Original practice. Thoughtfully reviewed exam questions.</p></div><div class="footer-links"><div><strong>Learn</strong><a href="courses.html">Free courses</a><a href="lessons.html">Video lessons &amp; notes</a><a href="concepts.html">Concept library</a></div><div><strong>Explore</strong><a href="practice.html">Practice questions</a><a href="pyqs.html">Past papers</a><a href="tutoring.html">Personal tutoring</a><a href="submit.html">Submit a question</a></div><div><strong>About</strong><a href="privacy.html">Privacy & contributions</a><a href="admin.html" rel="nofollow">Reviewer sign in</a>{channel_link}{email_link}<a data-external="youtubeUrl" hidden>Watch on YouTube</a><a data-external="instagramUrl" hidden>Instagram</a></div></div></div><div class="footer-bottom"><span>© <span data-year>2026</span> Aptitude Mind Plus</span><span>Made for curious minds. Built for every exam.</span></div></div></footer>
 </body></html>'''
 
 def eyebrow(t):return f'<div class="eyebrow">{t}</div>'

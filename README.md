@@ -67,8 +67,6 @@ The website includes `.pages.yml` and structured data in `content/`, so you can 
 2. Approve the Pages CMS GitHub app for **only this website repository**, not all personal repositories. Your GitHub account controls who can edit.
 3. Open `aptitude-mind-plus` in Pages CMS. The editor reads `.pages.yml` automatically.
 4. To update a headline: choose **Website settings and homepage**, change the field, then **Save**.
-   You can also choose **Site-wide font** on the same screen: `system` (default Apple-style), `modern` (Avenir/Helvetica), `readable` (Verdana), or `editorial` (Georgia). Changing individual heading sizes or page layouts still requires CSS editing.
-   To change the site favicon as well as the header/footer mark, upload your official logo in the **Official brand logo** field and save.
 5. To upload an image: open **Media**, upload the photo/logo, and choose its image field in **Website settings** or **Exam pathways**.
 6. To add a video: open **Free lessons and YouTube videos**, add a lesson row, enter title, topic, description and a **public YouTube share URL**, and set **Published** to true. The player is automatically embedded in privacy-enhanced mode **only when a visitor clicks Play**. Blank or invalid video links produce no fake player.
 7. To change exam course wording: open **Exam pathways**. Do not change the six internal exam codes. To edit the announcement strip: open **Announcement strip**.
@@ -94,6 +92,11 @@ The site's small public course images are saved with GitHub through Pages CMS. S
 
 Set up and test D1, R2, bindings `DB` / `UPLOADS`, and secrets `ADMIN_PASSWORD` / `SESSION_SECRET`; the public front end can be visited before this, but submissions stay disabled. Add Cloudflare Turnstile anti-bot protection, contact details, a privacy and deletion policy, and verified copyright permissions. Obtain the owner-supplied official logo before branding signoff. Provide captioned videos and descriptive lesson notes for accessibility and search visibility. YouTube videos can be edited and re-uploaded via the YouTube owner account, not the website CMS itself.
 
-## Experimental visual homepage editor (development branch only)
 
-See [EDITOR_PILOT.md](EDITOR_PILOT.md) and [visual-editor/README.md](visual-editor/README.md). The new Puck editor is not enabled on the public site. It remains behind a feature branch and requires admin authentication plus a scoped Cloudflare secret before publishing. Pages CMS continues to handle production content until full end-to-end tests pass.
+## Simplified learning navigation (development preview)
+
+The site groups the previous Courses, Concepts and Video Lessons menu entries under a single **Learn** destination. The four top-level links are Learn, Practice, Past papers and Tutoring. The logo remains the home link. Existing `lessons.html` and `concepts.html` URLs continue to work and are linked inside Learn and the course details.
+
+The Learn page offers exam filtering, fast local search, real course/topic links and a free learning sequence. The six exam detail pages link to relevant lesson notes, topics, original practice and the reviewed past-paper library. The optional **Save this course** button uses browser-only storage (no accounts or server-side tracking). We have not invented student ratings, course duration, certificates, payment gateways, recorded video lessons or exam results.
+
+This feature is staged on `feature/visual-homepage-editor` for review and is not merged to the live site until the editor and backend deployment are verified.
