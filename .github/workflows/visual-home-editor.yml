@@ -13,6 +13,9 @@ on:
       - 'schema/**'
       - 'tests/**'
       - 'visual_home.py'
+      - 'engagement.py'
+      - 'public/assets/engagement.css'
+      - 'public/assets/materials.js'
       - 'course_platform.py'
       - 'public/assets/style.css'
       - 'public/assets/catalog.js'
@@ -53,6 +56,10 @@ jobs:
           python3 -m py_compile pyq_library.py
           node --check public/assets/pyq-index.js
           node --check public/assets/app.js
+      - name: Verify community and premium content safety
+        run: |
+          python3 tests/engagement.test.py
+          node --check public/assets/materials.js
       - name: Test visual editor API validation and access control
         run: node --test tests/visual-editor.test.mjs
       - name: Generate responsive homepage from editor data
@@ -84,7 +91,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add public/index.html public/visual-editor/
+          git add public/*.html public/visual-editor/
           if ! git diff --staged --quiet; then
             git commit -m 'build: refresh visual homepage editor preview assets'
             git push origin HEAD:feature/visual-homepage-editor

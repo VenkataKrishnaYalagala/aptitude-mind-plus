@@ -9,6 +9,8 @@ const SPECS={
  TextSection:{eyebrow:100,heading:220,body:2500,align:10},
  ImageSection:{eyebrow:100,heading:220,body:1200,src:320,alt:220},
  TutorCTA:{eyebrow:100,heading:220,description:1400,buttonText:90},
+ MaterialsShelf:{eyebrow:100,heading:220,description:1400},
+ CommunitySpotlight:{eyebrow:100,heading:220,description:1400},
  Spacer:{size:10}
 };
 const PAGES=new Set(['courses.html','lessons.html','concepts.html','practice.html','pyqs.html','tutoring.html','submit.html','doubts.html']);

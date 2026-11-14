@@ -5,7 +5,7 @@ from urllib.parse import urlsplit, unquote
 
 root = Path(__file__).resolve().parent.parent / 'public'
 known = sorted(root.glob('*.html'))
-assert len(known) == 18, f'Expected 18 pages, got {len(known)}'
+assert len(known) == 20, f'Expected 20 pages, got {len(known)}'
 
 class References(HTMLParser):
     def __init__(self):

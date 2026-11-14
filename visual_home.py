@@ -11,6 +11,7 @@ from html import escape
 from pathlib import Path
 
 from course_platform import COURSES, CURRENCY
+from engagement import community_highlight, materials_highlight
 
 ROOT = Path(__file__).resolve().parent
 DATA_PATH = ROOT / 'content' / 'homepage.visual.json'
@@ -23,6 +24,8 @@ BLOCKS = {
     'TextSection': {'eyebrow': 100, 'heading': 220, 'body': 2500, 'align': 10},
     'ImageSection': {'eyebrow': 100, 'heading': 220, 'body': 1200, 'src': 320, 'alt': 220},
     'TutorCTA': {'eyebrow': 100, 'heading': 220, 'description': 1400, 'buttonText': 90},
+    'MaterialsShelf': {'eyebrow': 100, 'heading': 220, 'description': 1400},
+    'CommunitySpotlight': {'eyebrow': 100, 'heading': 220, 'description': 1400},
     'Spacer': {'size': 10},
 }
 PAGES = {'courses.html', 'lessons.html', 'concepts.html', 'practice.html', 'pyqs.html', 'tutoring.html', 'submit.html', 'doubts.html'}
@@ -127,6 +130,10 @@ def render_item(item):
         return f'<section class="ampv-section ampv-soft"><div class="ampv-wrap ampv-media-row">{wrap_header(p.get("eyebrow",""),p.get("heading",""),p.get("body",""))}{image}</div></section>'
     if kind=='TutorCTA':
         return f'<section class="ampv-section"><div class="ampv-wrap ampv-cta">{wrap_header(p.get("eyebrow",""),p.get("heading",""),p.get("description",""))}<div><a class="ampv-btn ampv-btn-primary" href="tutoring.html">{get("buttonText","Apply for tutoring")}</a><small class="ampv-cta-price">Optional support from {e(CURRENCY)}</small></div></div></section>'
+    if kind=='MaterialsShelf':
+        return materials_highlight(p.get('eyebrow',''),p.get('heading',''),p.get('description',''))
+    if kind=='CommunitySpotlight':
+        return community_highlight(p.get('eyebrow',''),p.get('heading',''),p.get('description',''))
     if kind=='Spacer':
         return f'<div class="ampv-spacer ampv-spacer-{get("size","small")}" aria-hidden="true"></div>'
     raise ValueError('Unknown homepage block.')

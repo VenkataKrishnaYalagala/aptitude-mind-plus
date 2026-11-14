@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "units-digit-practice",
+    "title": "Units digit — eight practice questions",
+    "summary": "An original mini-lesson and eight questions with worked answers.",
+    "exam": "all",
+    "kind": "Practice questions",
+    "access": "free",
+    "status": "available",
+    "href": "practice.html#lesson",
+    "price_inr": 0,
+    "published": true
+  },
+  {
+    "slug": "concept-library",
+    "title": "Aptitude concepts library",
+    "summary": "Learn the foundations of arithmetic, number systems and reasoning.",
+    "exam": "all",
+    "kind": "Concept notes",
+    "access": "free",
+    "status": "available",
+    "href": "concepts.html",
+    "price_inr": 0,
+    "published": true
+  },
+  {
+    "slug": "past-paper-index",
+    "title": "Previous exam questions and sources",
+    "summary": "Find organised past-paper references with exam, year and topic filters.",
+    "exam": "all",
+    "kind": "Past papers",
+    "access": "free",
+    "status": "available",
+    "href": "pyqs.html",
+    "price_inr": 0,
+    "published": true
+  },
+  {
+    "slug": "premium-workbook",
+    "title": "Advanced aptitude workbook",
+    "summary": "An optional, more detailed practice workbook. We will show the contents and price when it is ready.",
+    "exam": "all",
+    "kind": "Workbook",
+    "access": "paid",
+    "status": "planned",
+    "href": "",
+    "price_inr": null,
+    "published": true
+  }
+]

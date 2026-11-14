@@ -5,8 +5,8 @@ import re
 
 ROOT=Path(__file__).resolve().parent.parent
 PUBLIC=ROOT/'public'
-CSS=[(PUBLIC/'assets/style.css').read_text(),(PUBLIC/'assets/visual-home.css').read_text()]
-SCRIPTS=[(PUBLIC/'assets/config.js').read_text(),(PUBLIC/'assets/app.js').read_text(),(PUBLIC/'assets/catalog.js').read_text(),(PUBLIC/'assets/videos.js').read_text(),(PUBLIC/'assets/pyq-index.js').read_text()]
+CSS=[(PUBLIC/'assets/style.css').read_text(),(PUBLIC/'assets/visual-home.css').read_text(),(PUBLIC/'assets/engagement.css').read_text()]
+SCRIPTS=[(PUBLIC/'assets/config.js').read_text(),(PUBLIC/'assets/app.js').read_text(),(PUBLIC/'assets/catalog.js').read_text(),(PUBLIC/'assets/videos.js').read_text(),(PUBLIC/'assets/pyq-index.js').read_text(),(PUBLIC/'assets/materials.js').read_text()]
 OUT=Path('/mnt/data/amp-redesign/screenshots');OUT.mkdir(parents=True,exist_ok=True)
 
 def load(page,path):
@@ -37,6 +37,26 @@ with sync_playwright() as pw:
                 page.locator('[data-menu-trigger]').click()
                 assert page.locator('[data-mobile-nav]').is_visible()
                 assert page.locator('[data-mobile-nav] a[href="courses.html"]').is_visible()
+            assert page.locator('.materials-feature').count()==1
+            assert page.locator('.community-section').count()==1
+            assert page.locator('.community-section .social-youtube').count()==1
+            assert page.locator('.voice-card').count()==0
+            load(page,'materials.html')
+            assert page.locator('[data-material]').count()==4
+            assert page.locator('[data-material-count]').inner_text()=='4 resources found'
+            page.locator('[data-material-filter="paid"]').click()
+            assert page.locator('[data-material]:visible').count()==1
+            assert 'Coming soon' in page.locator('[data-material]:visible').inner_text()
+            page.locator('[data-material-filter="free"]').click()
+            assert page.locator('[data-material]:visible').count()==3
+            page.locator('[data-material-search]').fill('units digit')
+            assert page.locator('[data-material]:visible').count()==1
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),f'Materials overflow at {label}'
+            load(page,'community.html')
+            assert page.locator('.social-youtube').count()>=1
+            assert page.locator('.voice-card').count()==0
+            assert page.locator('.community-post').count()==0
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth'),f'Community overflow at {label}'
             load(page,'courses.html')
             assert page.locator('.market-course-card').count()==6
             assert page.locator('.learn-resource-card').count()==3

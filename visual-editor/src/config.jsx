@@ -1,6 +1,10 @@
 import React from 'react';
 import courses from '../../content/courses.json';
+import social from '../../content/social.json';
+import socialPosts from '../../content/social-posts.json';
+import feedback from '../../content/feedback.json';
 import './preview.css';
+import '../../public/assets/engagement.css';
 
 const options = [
   ['Courses', 'courses.html'],
@@ -10,13 +14,24 @@ const options = [
   ['PYQ library', 'pyqs.html'],
   ['Tutoring', 'tutoring.html'],
   ['Submit a question', 'submit.html'],
-  ['Ask a doubt', 'doubts.html']
+  ['Ask a doubt', 'doubts.html'],
+  ['Study materials', 'materials.html'],
+  ['Community', 'community.html']
 ].map(([label, value]) => ({ label, value }));
 
 const s = (value) => typeof value === 'string' ? value : '';
 const local = (link) => options.find(x => x.value === link)?.value || 'courses.html';
 const asset = (path) => /^\/media\/[a-zA-Z0-9_./-]+\.(?:png|jpg|jpeg|webp|svg)$/.test(s(path)) && !path.includes('..') ? path : '';
 const EXAM_ACCENTS = ['#2459d3','#9854e0','#ef8c28','#159477','#c65f63','#3971bd'];
+const trustedHosts = {youtube:['www.youtube.com','youtube.com','youtu.be'],instagram:['www.instagram.com','instagram.com'],facebook:['www.facebook.com','facebook.com','m.facebook.com','fb.watch']};
+const trustedSocial = (value, platform) => {
+  try{const u=new URL(value);return u.protocol==='https:'&&trustedHosts[platform]?.includes(u.hostname)&&u.pathname.length>1&&!u.username&&!u.password?u.href:'';}
+  catch{return ''}
+};
+const profiles = ['youtube','instagram','facebook'].map(platform=>({platform,url:trustedSocial(social[platform+'_url'],platform)})).filter(item=>item.url);
+const publishedPosts = socialPosts.filter(p=>p.published===true&&trustedSocial(p.source_url,p.platform));
+const approvedFeedback = feedback.filter(x=>x.approved===true&&x.permission_confirmed===true&&trustedSocial(x.source_url,x.platform)&&x.quote&&x.display_name);
+
 
 function Heading({eyebrow,heading,description,align='left'}) {
   return <div className={`ampv-heading ampv-${align}`}>
@@ -28,7 +43,7 @@ function Heading({eyebrow,heading,description,align='left'}) {
 
 export const config = {
   categories: {
-    essentials: {title: 'Main page sections', components: ['Hero','QuickLinks','CourseShelf','FreeLesson','TutorCTA','ExamPaths','TextSection']},
+    essentials: {title: 'Main page sections', components: ['Hero','QuickLinks','CourseShelf','FreeLesson','MaterialsShelf','CommunitySpotlight','TutorCTA','ExamPaths','TextSection']},
     extras: {title: 'Images and spacing', components: ['ImageSection','Spacer']}
   },
   root: {
@@ -112,10 +127,23 @@ export const config = {
       defaultProps:{eyebrow:'LEARN VISUALLY',heading:'A clearer explanation.',body:'',src:'',alt:'Aptitude study material'},
       render:({eyebrow,heading,body,src,alt})=><section className="ampv-section ampv-soft"><div className="ampv-wrap ampv-media-row"><Heading {...{eyebrow,heading,description:body}}/>{asset(src)?<img src={asset(src)} alt={alt||''} />:<div className="ampv-placeholder">Choose an image from your <b>/media/</b> library to display it here.</div>}</div></section>
     },
+    MaterialsShelf:{
+      label:'Free and paid materials',
+      fields:{eyebrow:{type:'text'},heading:{type:'text'},description:{type:'textarea'}},
+      defaultProps:{eyebrow:'STUDY MATERIALS',heading:'Free resources. Optional extras.',description:'Find free notes, practice and exam references. Premium workbooks will be listed with prices when ready.'},
+      render:({eyebrow,heading,description})=><section className="materials-feature"><div className="ampv-wrap materials-feature-inner"><div className="materials-feature-copy"><span className="ampv-eyebrow">{eyebrow||'STUDY MATERIALS'}</span><h2>{heading||'Free resources. Optional extras.'}</h2><p>{description}</p><a className="ampv-btn ampv-btn-primary" href="/materials.html">Explore study materials ↗</a></div><div className="materials-feature-art"><div><span>01 / OPEN LEARNING</span><strong>Free notes & practice</strong><small>Always available without payment</small></div><div><span>02 / OPTIONAL EXTRAS</span><strong>Premium workbooks</strong><small>Coming soon · prices published before purchase</small></div></div></div></section>
+    },
+    CommunitySpotlight:{
+      label:'Social and approved learner feedback',
+      fields:{eyebrow:{type:'text'},heading:{type:'text'},description:{type:'textarea'}},
+      defaultProps:{eyebrow:'LEARN WITH OUR COMMUNITY',heading:'Follow along as we learn.',description:'Watch our lessons, see new questions and follow our social pages.'},
+      render:({eyebrow,heading,description})=><section className="community-section" id="community"><div className="ampv-wrap community-grid"><div className="community-intro"><span className="ampv-eyebrow">{eyebrow||'FROM THE CLASSROOM'}</span><h2>{heading||social.section_heading}</h2><p>{description||social.section_description}</p><div className="social-links">{profiles.map(({platform,url})=><a className="social-pill" href={url} key={url} target="_blank" rel="noopener noreferrer nofollow"><span className={'social-icon social-'+platform}>{({youtube:'▶',instagram:'◎',facebook:'f'})[platform]}</span>{platform[0].toUpperCase()+platform.slice(1)} ↗</a>)}</div><a href="/community.html" className="community-text-link">See our community updates ↗</a></div>
+      {(publishedPosts.length||approvedFeedback.length)?<div className="community-preview">{publishedPosts.slice(0,2).map(p=><a className="community-post" href={trustedSocial(p.source_url,p.platform)} key={p.source_url} target="_blank" rel="noopener noreferrer nofollow"><span className="community-meta">{p.platform} · Public post ↗</span><h3>{p.title}</h3><p>{p.summary}</p><span className="community-origin">View original post</span></a>)}{approvedFeedback.slice(0,1).map(f=><figure className="voice-card" key={f.source_url}><blockquote>“{f.quote}”</blockquote><figcaption>{f.display_name} · {f.platform}</figcaption></figure>)}</div>:<div className="community-feature"><span>APTITUDE MIND PLUS / COMMUNITY</span><div>Learn.<br/><em>Share.</em><br/>Grow.</div><small>Short explanations · Exam tips · New lessons</small></div>}</div></section>
+    },
     TutorCTA:{
       label:'Tutoring invitation',
       fields:{eyebrow:{type:'text'},heading:{type:'text'},description:{type:'textarea'},buttonText:{type:'text'}},
-      defaultProps:{eyebrow:'OPTIONAL TEACHER SUPPORT',heading:'Need help from a teacher?',description:'Courses are free. You can apply for teacher support at ₹2,999 after we confirm class details.',buttonText:'Apply for teacher support'},
+      defaultProps:{eyebrow:'OPTIONAL TEACHER SUPPORT',heading:'Need help from a teacher?',description:'Core courses, lessons and practice are free. Some optional workbooks may be paid. Teacher support is ₹2,999 after we confirm class details.',buttonText:'Apply for teacher support'},
       render:({eyebrow,heading,description,buttonText})=><section className="ampv-section"><div className="ampv-wrap ampv-cta"><div><Heading {...{eyebrow,heading,description}}/></div><a className="ampv-btn ampv-btn-primary" href="/tutoring.html">{buttonText||'Enquire'}</a></div></section>
     },
     Spacer:{
