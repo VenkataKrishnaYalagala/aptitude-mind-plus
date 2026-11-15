@@ -93,3 +93,7 @@ The site's small public course images are saved with GitHub through Pages CMS. S
 ## Admin and launch checks before taking real applications
 
 Set up and test D1, R2, bindings `DB` / `UPLOADS`, and secrets `ADMIN_PASSWORD` / `SESSION_SECRET`; the public front end can be visited before this, but submissions stay disabled. Add Cloudflare Turnstile anti-bot protection, contact details, a privacy and deletion policy, and verified copyright permissions. Obtain the owner-supplied official logo before branding signoff. Provide captioned videos and descriptive lesson notes for accessibility and search visibility. YouTube videos can be edited and re-uploaded via the YouTube owner account, not the website CMS itself.
+
+## Open-source tools and GitHub reference library
+
+The [curated GitHub repository library](docs/github-resource-library.md) lists 113 verified external projects across Agent Skills, filmmaking, educational animations, web development, local AI, robotics, workflow automation and repository security. [The GitHub Stars import list](docs/github-stars.txt) and [preview-first import helper](scripts/star_github_resources.py) are available for bookmarking upstream repositories. These external projects are references, not dependencies installed in this website.
