@@ -1,6 +1,12 @@
 # Aptitude Mind Plus — Standalone Educational Website
 
-This is the **website only**. The Instagram/Facebook daily publisher is a separate project and is **not included**. This repository should be named `aptitude-mind-plus` under your GitHub account, with the public website branded **Aptitude Mind Plus**.
+A responsive learning website for **Aptitude Mind Plus**, with aptitude and reasoning lessons, question practice, study resources, and a content editing workflow.
+
+**Related projects:** [AMP Daily publishing tools](https://github.com/VenkataKrishnaYalagala/aptitude-mind-plus-daily) · [Creator & STEM Toolkit](https://github.com/VenkataKrishnaYalagala/creator-stem-toolkit)
+
+## Quick navigation
+
+[Site features](#site-features) · [Architecture](#architecture--responsible-and-low-cost) · [Local verification](#verify-locally) · [Content editing](#owners-no-code-editor-pages-cms-free)
 
 ## Site features
 
